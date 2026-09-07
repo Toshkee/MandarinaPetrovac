@@ -30,7 +30,7 @@ const tr = t(locale);
 const title = Astro.props.title ?? tr.meta.title;
 const description = Astro.props.description ?? tr.meta.description;
 
-/** Absolute URLs exist only once SITE_URL is configured; nothing is invented. */
+/** Absolute URLs come from the configured origin (see astro.config.mjs); nothing is invented. */
 const site = Astro.site;
 const absolute = (relative: string): string | undefined => (site ? new URL(relative, site).href : undefined);
 const canonical = absolute(path);

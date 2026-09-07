@@ -20,8 +20,9 @@ to update.
 - [ ] **Exact map location.** The map link currently opens Petrovac as a town. Replace with the
       apartment pin (Google Maps share link) once you are happy to publish it.
       → `property.links.map`.
-- [ ] **Production domain.** Set `SITE_URL` in the hosting build environment (see `.env.example`).
-      This switches on canonical URLs, hreflang, social preview image and the sitemap.
+- [x] **Production domain.** `mandarinapt.me` (Namecheap), configured in `astro.config.mjs`.
+      Remaining step is in the Cloudflare dashboard: point the Namecheap nameservers at Cloudflare
+      and add the domain under Pages → Custom domains.
 
 ## Optional, hidden until supplied
 

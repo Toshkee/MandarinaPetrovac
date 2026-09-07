@@ -70,10 +70,10 @@ the `i18n` block in `astro.config.mjs`.
 
 ## Domain, canonical URLs, sitemap
 
-`SITE_URL` (see `.env.example`) supplies the production origin for canonical links, hreflang
-alternates, `og:url`, `og:image`, the sitemap and `robots.txt`. Set it in the Cloudflare Pages
-build variables for the Production environment. Preview deployments fall back to `CF_PAGES_URL`.
-Local builds without either variable omit absolute metadata and the sitemap.
+The production origin is `https://mandarinapt.me`, set in `astro.config.mjs`. It supplies
+canonical links, hreflang alternates, `og:url`, `og:image`, the sitemap and `robots.txt`.
+Cloudflare Pages branch deployments use their own `*.pages.dev` address instead, so previews never
+point at production. `SITE_URL` (see `.env.example`) overrides both if the domain ever changes.
 
 ## Optional hero video
 
@@ -100,10 +100,10 @@ Everything remains readable and navigable with JavaScript disabled.
   Pages → connect the GitHub repository. Build command `npm run build`, output directory `dist`.
   Node 24 is picked up from `.nvmrc`. Every push to `main` deploys production; other branches get
   preview URLs.
-- **Build variables.** `SITE_URL=https://<your-domain>` for the Production environment. Nothing
-  else is required.
-- **Custom domain.** Pages → Custom domains → add the domain. With the domain's DNS already on
-  Cloudflare, the CNAME and certificate are created automatically.
+- **Build variables.** None required; the production origin is in `astro.config.mjs`.
+- **Custom domain.** Pages → Custom domains → add `mandarinapt.me` (and `www.mandarinapt.me`).
+  The domain is registered at Namecheap, so point its nameservers at Cloudflare first; the CNAME
+  and certificate are then created automatically.
 - **Manual deploy** (alternative to Git integration): `npx wrangler login`, then
   `npx wrangler pages deploy dist --project-name mandarina-petrovac` after a local build.
   `wrangler.toml` records the project name and output directory.

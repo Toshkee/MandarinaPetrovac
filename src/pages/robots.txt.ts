@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-/** Allows crawling; advertises the sitemap only once SITE_URL is configured. */
+/** Allows crawling; advertises the sitemap for the configured origin. */
 export const GET: APIRoute = ({ site }) => {
   const lines = ['User-agent: *', 'Allow: /'];
   if (site) {
