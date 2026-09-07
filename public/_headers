@@ -1,9 +1,11 @@
-# Cloudflare Pages headers. Hashed build assets never change, HTML is revalidated each visit.
+# Cloudflare header rules. Every matching rule is applied, so the two blocks must not both set
+# Cache-Control: a hashed asset would then receive "max-age=0, ..., max-age=31536000" and browsers
+# honour the first value, which is the opposite of what is wanted. HTML therefore relies on the
+# platform default (public, max-age=0, must-revalidate) and only the hashed assets are pinned here.
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
 
 /*
-  Cache-Control: public, max-age=0, must-revalidate
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin

@@ -109,7 +109,8 @@ files as static assets; there is no server code.
 - **Manual deploy** (alternative to Git integration): `npx wrangler login`, then `npm run build`
   and `npx wrangler deploy`. `wrangler.toml` records the Worker name and the asset directory.
 
-`public/_headers` sets the cache policy: hashed assets under `/_astro/` are immutable for a year,
-HTML is revalidated on every request. It also adds basic security headers. The largest transfers
+`public/_headers` pins hashed assets under `/_astro/` as immutable for a year. HTML keeps the
+platform default (`max-age=0, must-revalidate`), because Cloudflare applies every matching rule and
+a second `Cache-Control` would be appended rather than replace the first. It also adds basic security headers. The largest transfers
 are the photographs; the hero loads eagerly with `fetchpriority="high"`, everything below the fold
 is lazy.
