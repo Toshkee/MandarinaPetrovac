@@ -3,14 +3,11 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 /**
- * The production origin. Branch deployments on Cloudflare Pages use their own per-deploy
- * *.pages.dev address (CF_PAGES_URL) so canonical URLs, hreflang links and the sitemap point at
- * the preview being viewed rather than at production. SITE_URL overrides both when needed.
+ * The production origin, used for canonical URLs, hreflang links, og:image and the sitemap.
+ * Preview builds keep it too, so a preview never competes with production in search; instead
+ * they are excluded through robots.txt (see src/pages/robots.txt.ts). SITE_URL overrides it.
  */
-const productionUrl = 'https://mandarinapt.me';
-const branch = process.env.CF_PAGES_BRANCH?.trim();
-const previewUrl = branch && branch !== 'main' ? process.env.CF_PAGES_URL?.trim() : undefined;
-const siteUrl = process.env.SITE_URL?.trim() || previewUrl || productionUrl;
+const siteUrl = process.env.SITE_URL?.trim() || 'https://mandarinapt.me';
 
 export default defineConfig({
   site: siteUrl,

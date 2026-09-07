@@ -1,5 +1,10 @@
-# Cloudflare Pages project settings used by `wrangler pages deploy`.
-# The Git integration in the dashboard does not need this file.
-name = "mandarina-petrovac"
-pages_build_output_dir = "dist"
+# Cloudflare Workers project with static assets: `npm run build` writes dist/, and the Worker
+# serves it directly. No server code, so there is no `main` entry point.
+name = "mandarinapetrovac"
 compatibility_date = "2026-09-01"
+
+[assets]
+directory = "./dist"
+# The site uses trailingSlash: 'always', which is what auto-trailing-slash serves.
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"

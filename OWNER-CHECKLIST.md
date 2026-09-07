@@ -22,7 +22,7 @@ to update.
       → `property.links.map`.
 - [x] **Production domain.** `mandarinapt.me` (Namecheap), configured in `astro.config.mjs`.
       Remaining step is in the Cloudflare dashboard: point the Namecheap nameservers at Cloudflare
-      and add the domain under Pages → Custom domains.
+      and add the domain to the Worker under Settings → Domains & Routes.
 
 ## Optional, hidden until supplied
 
