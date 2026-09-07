@@ -3,11 +3,11 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 /**
- * The production domain is not known yet. Set SITE_URL (for example in .env or in the
- * CI environment) to enable canonical URLs, hreflang links and the sitemap.
- * Never hard-code a placeholder domain here.
+ * SITE_URL can override the production origin. On Vercel, use the stable project
+ * domain for canonical URLs, hreflang links and the sitemap, including previews.
  */
-const siteUrl = process.env.SITE_URL?.trim() || undefined;
+const productionDomain = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+const siteUrl = process.env.SITE_URL?.trim() || (productionDomain ? `https://${productionDomain}` : undefined);
 
 export default defineConfig({
   site: siteUrl,
