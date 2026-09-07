@@ -36,7 +36,7 @@ export interface Property {
      * The clean listing URL is used so no dates or tracking parameters are baked in.
      */
     booking: string;
-    /** Hidden on the site until a listing URL is supplied. */
+    /** Owner-supplied listing URL; null hides Airbnb links. */
     airbnb: string | null;
     instagram: string;
     instagramHandle: string;
@@ -61,7 +61,7 @@ export const property: Property = {
   },
   links: {
     booking: 'https://www.booking.com/hotel/me/mandarina-sunset-apartment.html',
-    airbnb: null,
+    airbnb: 'https://www.airbnb.com/rooms/1678841843244205215',
     instagram: 'https://www.instagram.com/mandarina_petrovac/',
     instagramHandle: 'mandarina_petrovac',
     map: 'https://www.google.com/maps/search/?api=1&query=Petrovac%2C%20Montenegro',

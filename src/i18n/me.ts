@@ -9,7 +9,7 @@ export const me: Translations = {
   meta: {
     title: 'Mandarina · Apartman u Petrovcu s pogledom na more',
     description:
-      'Mandarina je svijetli apartman iznad Petrovca, Crna Gora: terasa okrenuta ka Jadranu, spavaća soba s pogledom na more i bazen u sklopu kompleksa. Rezervacije preko Booking.com-a.',
+      'Mandarina je svijetli apartman iznad Petrovca, Crna Gora: terasa okrenuta ka Jadranu, spavaća soba s pogledom na more i bazen u sklopu kompleksa. Rezervacije preko Booking.com-a i Airbnb-a.',
     ogAlt: 'Terasa apartmana Mandarina s pogledom preko krovova Petrovca na Jadransko more',
   },
   anchors: {
@@ -34,19 +34,19 @@ export const me: Translations = {
     home: 'Mandarina, početna strana',
   },
   hero: {
-    eyebrow: 'Petrovac, Crna Gora',
-    title: 'Svijetli apartman iznad Petrovca, s pogledom na more.',
-    text: 'Terasa okrenuta ka Jadranu, bazen u sklopu kompleksa i mirno mjesto za odmor iznad grada.',
-    ctaPrimary: 'Pogledajte na Booking.com',
+    place: 'Petrovac, Crna Gora',
+    title: 'Jutra s pogledom',
+    titleAccent: 'na more.',
+    text: 'Dobro došli u Mandarinu. Svijetli apartman iznad Petrovca, s terasom prema Jadranu i bazenom u sklopu kompleksa.',
+    ctaPrimary: 'Provjerite slobodne termine',
     ctaSecondary: 'Pogledajte galeriju',
     caption: 'Pogled s terase apartmana',
   },
   intro: {
-    kicker: 'Apartman',
-    title: 'Jedan apartman, uređen za odmor uz more.',
+    title: 'Otvorite vrata terase.',
     body: [
       'Mandarina je savremeni apartman u stambenom kompleksu iznad Petrovca. Dnevni boravak se otvara na terasu, spavaća soba gleda prema moru, a kuhinja je opremljena za pripremu obroka.',
-      'Svijetle boje, drvo i pleteni detalji drže prostor mirnim i toplim, onako kako ga gosti zateknu.',
+      'Za doručak možete sjesti za šank ili ponijeti kafu na terasu. More se vidi i iz spavaće sobe.',
     ],
     detailsHeading: 'Ono što vas čeka',
     details: [
@@ -59,24 +59,20 @@ export const me: Translations = {
     ],
   },
   interiors: {
-    kicker: 'Enterijer',
-    title: 'Dnevni boravak, spavaća soba i kuhinja',
-    body: 'Nekoliko prostorija, snimljenih onako kako ih gosti zateknu: krem tkanine, svijetlo drvo i pletena rasvjeta.',
+    title: 'Zavirite unutra.',
+    body: 'Dnevni boravak otvoren prema terasi, zasebna spavaća soba i kuhinja u boji mora.',
   },
   terrace: {
-    kicker: 'Terasa i pogled',
-    title: 'Terasa iznad krovova Petrovca',
+    title: 'Ostanite još malo na terasi.',
     body: 'S terase se pogled pruža preko krovova Petrovca do otvorenog mora. Dvije naslonjače i sto su tu za jutarnju kafu, a uveče se gleda kako se svjetlo mijenja nad Jadranom.',
   },
   pool: {
-    kicker: 'Bazen',
-    title: 'Bazen u sklopu kompleksa',
+    title: 'Između dva odlaska na plažu.',
     body: 'Bazen se nalazi u sklopu kompleksa u kojem je apartman i okrenut je prema moru. Oko njega su masline, šljunak i sredozemno zelenilo.',
   },
   gallery: {
-    kicker: 'Galerija',
-    title: 'Fotografije apartmana, terase i bazena',
-    body: 'Odabrane fotografije. Otvorite bilo koju za veći prikaz.',
+    title: 'Mandarina, iz svakog ugla.',
+    body: 'Apartman, terasa i bazen. Dodirnite fotografiju za veći prikaz.',
     showAll: 'Prikaži sve fotografije',
     lightbox: {
       dialogLabel: 'Galerija fotografija',
@@ -88,7 +84,6 @@ export const me: Translations = {
     },
   },
   location: {
-    kicker: 'Lokacija',
     title: 'Petrovac na Moru',
     body: [
       'Petrovac je malo primorsko mjesto na Budvanskoj rivijeri, između Budve i Bara. Ima plažu u zaklonjenom zalivu, šetalište uz more, mletačku tvrđavu Kaštio i pogled na ostrvca Katič i Sveta Neđelja.',
@@ -103,9 +98,8 @@ export const me: Translations = {
     mapCta: 'Otvorite Petrovac na mapi',
   },
   booking: {
-    kicker: 'Rezervacija',
-    title: 'Rezervišite boravak u Mandarini',
-    body: 'Rezervacije se obavljaju preko Booking.com-a, gdje možete provjeriti slobodne termine i cijene.',
+    title: 'Vidimo se u Petrovcu.',
+    body: 'Slobodne termine i cijene možete provjeriti na Booking.com-u ili Airbnb-u. Rezervišite preko platforme koja vam više odgovara.',
     bookingCta: 'Pogledajte na Booking.com',
     airbnbCta: 'Pogledajte na Airbnb-u',
     instagramLead: 'Fotografije i novosti:',

@@ -1,7 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
-import CitrusMark from './CitrusMark.astro';
 import HeroVideo from './HeroVideo.astro';
+import MagneticLink from './MagneticLink.astro';
 import { media } from '../content/media';
 import { property } from '../config/property';
 import { t, type Locale } from '../i18n';
@@ -17,22 +17,17 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
 
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero__panel">
-    <p class="hero__eyebrow">
-      <CitrusMark size={18} />
-      <span>{tr.hero.eyebrow}</span>
-    </p>
-    <h1 id="hero-title" class="hero__title">{tr.hero.title}</h1>
+    <h1 id="hero-title" class="hero__title">{tr.hero.title} <em>{tr.hero.titleAccent}</em></h1>
     <p class="hero__text">{tr.hero.text}</p>
     <div class="hero__actions" data-hero-cta>
-      <a
-        class="btn btn--primary hero__cta"
+      <MagneticLink
+        class="hero__cta"
         href={property.links.booking}
-        target="_blank"
-        rel="noopener noreferrer"
+        external
       >
         {tr.hero.ctaPrimary}
         <span class="sr-only">({tr.footer.externalNote})</span>
-      </a>
+      </MagneticLink>
       <a class="text-link" href={`#${tr.anchors.gallery}`}>
         {tr.hero.ctaSecondary}
         <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -40,6 +35,7 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
         </svg>
       </a>
     </div>
+    <p class="hero__place">{tr.hero.place}</p>
   </div>
 
   <div class="hero__media">
@@ -68,7 +64,7 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
   .hero {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    background: var(--c-paper);
+    background: var(--c-peach);
   }
 
   /* Mobile: the photograph first, tall enough to read the terrace and sea. */
@@ -100,20 +96,23 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
     padding: 2rem var(--gutter) 2.75rem;
   }
 
-  .hero__eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin: 0 0 1.25rem;
-    font-size: var(--text-sm);
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--c-ink-soft);
+  .hero__title {
+    max-width: 12ch;
+    font-size: clamp(3.25rem, 5.2vw, 5.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
   }
 
-  .hero__title {
-    max-width: 17ch;
+  .hero__title em {
+    display: block;
+    font-style: normal;
+    color: var(--c-burnt);
+  }
+
+  .hero__place {
+    margin-top: 2.25rem;
+    font-size: var(--text-sm);
+    color: var(--c-ink-soft);
   }
 
   .hero__text {
@@ -131,7 +130,7 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
     margin-top: 2rem;
   }
 
-  .hero__cta {
+  .hero__actions :global(.hero__cta) {
     width: 100%;
   }
 
@@ -139,10 +138,11 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
     .hero__actions {
       flex-direction: row;
       align-items: center;
-      gap: 1.75rem;
+      gap: 1.25rem;
+      flex-wrap: wrap;
     }
 
-    .hero__cta {
+    .hero__actions :global(.hero__cta) {
       width: auto;
     }
   }

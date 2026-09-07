@@ -16,7 +16,7 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
 <section class="intro section" id={tr.anchors.apartment} aria-labelledby="intro-title">
   <div class="container intro__grid">
     <div class="intro__text" data-reveal>
-      <SectionHead kicker={tr.intro.kicker} title={tr.intro.title} id="intro-title" />
+      <SectionHead title={tr.intro.title} id="intro-title" />
       <div class="intro__body prose">
         {tr.intro.body.map((paragraph) => <p>{paragraph}</p>)}
       </div>
@@ -57,29 +57,51 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
 
   .intro__details {
     margin-top: 2.25rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--c-line);
+    padding: 1.5rem;
+    background: #f0ece1;
+    border-radius: 12px;
   }
 
   .intro__details-title {
     font-family: var(--font-sans);
     font-size: var(--text-sm);
     font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    letter-spacing: 0;
     color: var(--c-ink-soft);
     margin-bottom: 0.75rem;
   }
 
   .intro__list {
     display: grid;
-    gap: 0;
+    gap: 0.5rem 1.25rem;
   }
 
   .intro__list li {
-    padding: 0.7rem 0;
-    border-bottom: 1px solid var(--c-line);
+    padding: 0.4rem 0 0.4rem 1.1rem;
+    position: relative;
+    font-size: var(--text-sm);
     line-height: 1.4;
+  }
+
+  .intro__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.95rem;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: var(--c-olive);
+  }
+
+  .intro__figure {
+    padding: 0.75rem 0.75rem 1rem;
+    background: #fffdf8;
+    box-shadow: 0 12px 36px rgb(48 46 40 / 8%);
+  }
+
+  .intro__figure figcaption {
+    padding-inline: 0.35rem;
   }
 
   @media (min-width: 48em) {
@@ -99,7 +121,8 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
     .intro__figure {
       position: sticky;
       top: calc(var(--header-h) + 1.5rem);
-      margin-top: 0.5rem;
+      margin-top: 2rem;
+      rotate: 2deg;
     }
   }
 </style>

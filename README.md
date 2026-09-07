@@ -2,7 +2,7 @@
 
 Guest-facing website for Mandarina, an apartment above Petrovac, Montenegro. Static Astro site
 in Montenegrin (Latin script, at `/`) and English (at `/en/`), with external booking on
-Booking.com. There is no onsite booking form, database, CMS or analytics.
+Booking.com and Airbnb. There is no onsite booking form, database, CMS or analytics.
 
 ## Commands
 
@@ -53,9 +53,9 @@ dropping them in with the same file names improves every rendition without code 
 
 Reservations happen on external platforms only. `property.links.booking` points at the clean
 Booking.com listing URL (`booking.com/hotel/me/mandarina-sunset-apartment.html`), verified on
-2026-09-07 as the destination of the Instagram bio share link. Set `property.links.airbnb` to the
-listing URL to show the Airbnb buttons in the booking section and footer; leave it `null` to hide
-them. All external links open in a new tab with `rel="noopener noreferrer"` and work without
+2026-09-07 as the destination of the Instagram bio share link. `property.links.airbnb` points at
+the owner-supplied listing (`airbnb.com/rooms/1678841843244205215`), without dates or tracking
+parameters. Airbnb appears in the booking section and footer. All external links open in a new tab with `rel="noopener noreferrer"` and work without
 JavaScript.
 
 ## Translations and routes

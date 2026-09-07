@@ -2,6 +2,7 @@
 :root {
   /* Surfaces */
   --c-paper: #fbf7ef;
+  --c-peach: #f2e1cd;
   --c-sand: #e8decd;
   --c-sand-deep: #dccfb8;
 
@@ -28,7 +29,7 @@
   --text-base: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
   --text-lg: clamp(1.1875rem, 1.1rem + 0.45vw, 1.375rem);
   --text-h3: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
-  --text-h2: clamp(1.875rem, 1.45rem + 1.7vw, 2.875rem);
+  --text-h2: clamp(2.375rem, 1.5rem + 2.6vw, 3.875rem);
   --text-h1: clamp(2.25rem, 1.6rem + 2.4vw, 3.375rem);
 
   /* Rhythm */
@@ -41,7 +42,7 @@
   --booking-bar-h: 4.5rem;
 
   /* Shape and motion */
-  --radius: 2px;
+  --radius: 6px;
   --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
   --dur: 240ms;
   --dur-slow: 480ms;

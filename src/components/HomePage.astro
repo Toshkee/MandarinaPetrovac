@@ -32,7 +32,11 @@ const structuredData = {
     addressLocality: property.location.town,
     addressCountry: property.location.countryCode,
   },
-  sameAs: [property.links.instagram, property.links.booking],
+  sameAs: [
+    property.links.instagram,
+    property.links.booking,
+    ...(property.links.airbnb ? [property.links.airbnb] : []),
+  ],
   amenityFeature: confirmedAmenities.map((amenity) => ({
     '@type': 'LocationFeatureSpecification',
     name: amenity[locale],

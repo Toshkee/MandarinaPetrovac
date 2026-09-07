@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import SectionHead from './SectionHead.astro';
+import MagneticLink from './MagneticLink.astro';
 import logo from '../assets/brand/mandarina-sunset-logo.jpg';
 import { property } from '../config/property';
 import { t, type Locale } from '../i18n';
@@ -32,18 +33,16 @@ const tr = t(locale);
       />
     </div>
     <div class="booking__text">
-      <SectionHead kicker={tr.booking.kicker} title={tr.booking.title} id="booking-title" />
+      <SectionHead title={tr.booking.title} id="booking-title" />
       <p class="booking__body">{tr.booking.body}</p>
       <div class="booking__actions">
-        <a
-          class="btn btn--primary"
+        <MagneticLink
           href={property.links.booking}
-          target="_blank"
-          rel="noopener noreferrer"
+          external
         >
           {tr.booking.bookingCta}
           <span class="sr-only">({tr.footer.externalNote})</span>
-        </a>
+        </MagneticLink>
         {
           property.links.airbnb && (
             <a class="btn btn--ghost" href={property.links.airbnb} target="_blank" rel="noopener noreferrer">
@@ -66,7 +65,7 @@ const tr = t(locale);
 
 <style>
   .booking {
-    border-top: 1px solid var(--c-line);
+    background: var(--c-peach);
   }
 
   .booking__inner {
@@ -76,6 +75,7 @@ const tr = t(locale);
 
   .booking__seal {
     width: 7rem;
+    rotate: -8deg;
   }
 
   .booking__logo {
@@ -97,7 +97,7 @@ const tr = t(locale);
     margin-top: 2rem;
   }
 
-  .booking__actions .btn {
+  .booking__actions :global(.btn) {
     width: 100%;
   }
 
@@ -117,21 +117,27 @@ const tr = t(locale);
       flex-wrap: wrap;
     }
 
-    .booking__actions .btn {
+    .booking__actions :global(.btn) {
       width: auto;
     }
   }
 
   @media (min-width: 64em) {
     .booking__inner {
-      grid-template-columns: 9rem minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1fr) 12rem;
       column-gap: 4rem;
-      align-items: start;
+      align-items: center;
+    }
+
+    .booking__text {
+      grid-column: 1;
+      grid-row: 1;
     }
 
     .booking__seal {
-      width: 9rem;
-      margin-top: 0.5rem;
+      width: 12rem;
+      grid-column: 2;
+      grid-row: 1;
     }
   }
 </style>

@@ -20,7 +20,7 @@ const primary = t('me');
           const tr = t(code);
           return (
             <div class="not-found__block" lang={tr.langTag}>
-              <p class="kicker">404</p>
+              <p class="not-found__code">404</p>
               <h1 class="not-found__title">{tr.notFound.title}</h1>
               <p class="not-found__body">{tr.notFound.body}</p>
               <a class="text-link" href={localePath[code]}>
@@ -42,6 +42,12 @@ const primary = t('me');
 
   .not-found__title {
     font-size: var(--text-h2);
+  }
+
+  .not-found__code {
+    margin-bottom: 1rem;
+    color: var(--c-burnt);
+    font-size: var(--text-sm);
   }
 
   .not-found__body {

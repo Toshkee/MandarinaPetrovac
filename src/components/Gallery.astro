@@ -33,7 +33,6 @@ const items = await Promise.all(
   <div class="container">
     <div data-reveal>
       <SectionHead
-        kicker={tr.gallery.kicker}
         title={tr.gallery.title}
         id="gallery-title"
         lede={tr.gallery.body}
@@ -69,6 +68,8 @@ const items = await Promise.all(
                   loading="lazy"
                 />
               </span>
+              <span class="gallery__caption">{item.caption[locale]}</span>
+              <span class="gallery__open" aria-hidden="true">↗</span>
             </a>
           </li>
         ))
@@ -78,7 +79,6 @@ const items = await Promise.all(
     <div class="gallery__more-wrap">
       <button class="btn btn--ghost" type="button" data-gallery-more>
         {tr.gallery.showAll}
-        <span class="gallery__count" aria-hidden="true">({items.length})</span>
       </button>
     </div>
   </div>
@@ -94,7 +94,10 @@ const items = await Promise.all(
 
   .gallery__item {
     display: block;
+    position: relative;
+    overflow: hidden;
     border-radius: var(--radius);
+    text-decoration: none;
   }
 
   .gallery__item .frame {
@@ -124,9 +127,31 @@ const items = await Promise.all(
     justify-content: center;
   }
 
-  .gallery__count {
-    color: var(--c-ink-soft);
+  .gallery__caption {
+    display: block;
+    padding: 0.75rem 2rem 0.75rem 0;
+    font-size: var(--text-sm);
+    line-height: 1.4;
   }
+
+  .gallery__open {
+    position: absolute;
+    right: 0.75rem;
+    top: 0.75rem;
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--c-paper);
+    color: var(--c-ink);
+    transition: transform var(--dur) var(--ease);
+  }
+
+  .gallery__item:hover .gallery__open {
+    transform: rotate(45deg);
+  }
+
 
   @media (min-width: 48em) {
     .gallery__grid {
@@ -136,6 +161,7 @@ const items = await Promise.all(
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .gallery__open,
     .gallery__item :global(img) {
       transition: none;
     }

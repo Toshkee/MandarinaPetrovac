@@ -25,7 +25,7 @@ to update.
 
 ## Optional, hidden until supplied
 
-- [ ] **Airbnb listing URL.** → `property.links.airbnb` (shows "View on Airbnb" buttons).
+- [x] **Airbnb listing URL.** Owner supplied `airbnb.com/rooms/1678841843244205215`; added without dates or tracking parameters to `property.links.airbnb`.
 - [ ] **Contact e-mail and phone.** → `property.contact` (shows a Contact block in the footer).
 - [ ] **Wi-Fi, parking, check-in times, house rules.** Not visible in the photos, so not listed.
       → `intro.details` in `src/i18n/*.ts`.

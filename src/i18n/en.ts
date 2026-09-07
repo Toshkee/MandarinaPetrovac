@@ -9,7 +9,7 @@ export const en: Translations = {
   meta: {
     title: 'Mandarina · Sea-view apartment in Petrovac, Montenegro',
     description:
-      'Mandarina is a bright apartment above Petrovac, Montenegro: a terrace facing the Adriatic, a bedroom with a sea view and a pool in the complex. Reservations on Booking.com.',
+      'Mandarina is a bright apartment above Petrovac, Montenegro: a terrace facing the Adriatic, a bedroom with a sea view and a pool in the complex. Reservations on Booking.com and Airbnb.',
     ogAlt: 'The terrace of the Mandarina apartment, looking over the rooftops of Petrovac to the Adriatic Sea',
   },
   anchors: {
@@ -34,19 +34,19 @@ export const en: Translations = {
     home: 'Mandarina, home page',
   },
   hero: {
-    eyebrow: 'Petrovac, Montenegro',
-    title: 'A bright apartment above Petrovac, looking out to the sea.',
-    text: 'A terrace facing the Adriatic, a pool in the complex and a quiet place to rest above the town.',
-    ctaPrimary: 'View on Booking.com',
+    place: 'Petrovac, Montenegro',
+    title: 'Wake up to',
+    titleAccent: 'the Adriatic.',
+    text: 'Welcome to Mandarina. A bright apartment above Petrovac, with a terrace facing the sea and a pool in the complex.',
+    ctaPrimary: 'Check available dates',
     ctaSecondary: 'See the gallery',
     caption: 'The view from the apartment’s terrace',
   },
   intro: {
-    kicker: 'The apartment',
-    title: 'One apartment, furnished for time by the sea.',
+    title: 'Open the terrace doors.',
     body: [
       'Mandarina is a contemporary apartment in a residential complex above Petrovac. The living room opens onto the terrace, the bedroom looks towards the sea, and the kitchen is equipped for cooking.',
-      'Light colours, wood and woven details keep the space calm and warm, just as guests find it.',
+      'Have breakfast at the counter or take your coffee out to the terrace. You can see the sea from the bedroom, too.',
     ],
     detailsHeading: 'What you will find',
     details: [
@@ -59,24 +59,20 @@ export const en: Translations = {
     ],
   },
   interiors: {
-    kicker: 'Interiors',
-    title: 'Living room, bedroom and kitchen',
-    body: 'A few of the rooms, photographed as guests find them: cream fabrics, pale wood and woven lighting.',
+    title: 'Take a look inside.',
+    body: 'A living room opening onto the terrace, a separate bedroom and a kitchen in the colours of the sea.',
   },
   terrace: {
-    kicker: 'Terrace and view',
-    title: 'The terrace above Petrovac’s rooftops',
+    title: 'Stay out a little longer.',
     body: 'From the terrace, the view runs over the rooftops of Petrovac to the open sea. Two armchairs and a table are set for morning coffee; in the evening you watch the light change over the Adriatic.',
   },
   pool: {
-    kicker: 'Pool',
-    title: 'Pool in the complex',
+    title: 'Between trips to the beach.',
     body: 'The pool is part of the complex the apartment belongs to and faces the sea. Around it are olive trees, pebbles and Mediterranean planting.',
   },
   gallery: {
-    kicker: 'Gallery',
-    title: 'Photographs of the apartment, terrace and pool',
-    body: 'A selection of photographs. Open any of them for a larger view.',
+    title: 'A closer look at Mandarina.',
+    body: 'The apartment, terrace and pool. Tap a photograph for a closer look.',
     showAll: 'Show all photographs',
     lightbox: {
       dialogLabel: 'Photo gallery',
@@ -88,7 +84,6 @@ export const en: Translations = {
     },
   },
   location: {
-    kicker: 'Location',
     title: 'Petrovac na Moru',
     body: [
       'Petrovac is a small coastal town on the Budva Riviera, between Budva and Bar. It has a beach in a sheltered bay, a seafront promenade, the Venetian fortress of Kaštio and views of the islets of Katič and Sveta Neđelja.',
@@ -103,9 +98,8 @@ export const en: Translations = {
     mapCta: 'Open Petrovac on the map',
   },
   booking: {
-    kicker: 'Booking',
-    title: 'Book a stay at Mandarina',
-    body: 'Reservations are made through Booking.com, where you can check availability and prices.',
+    title: 'See you in Petrovac.',
+    body: 'Check availability and prices on Booking.com or Airbnb. Book through whichever platform you prefer.',
     bookingCta: 'View on Booking.com',
     airbnbCta: 'View on Airbnb',
     instagramLead: 'Photographs and news:',

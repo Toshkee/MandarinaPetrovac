@@ -48,14 +48,13 @@ const cells: { item: MediaItem; area: string; sizes: string; widths: number[] }[
   <div class="container interiors__grid">
     <div class="interiors__head" data-reveal>
       <SectionHead
-        kicker={tr.interiors.kicker}
         title={tr.interiors.title}
         id="interiors-title"
         lede={tr.interiors.body}
       />
     </div>
     {
-      cells.map(({ item, area, sizes, widths }, index) => (
+      cells.map(({ item, area, sizes, widths }) => (
         <figure class={`interiors__figure interiors__figure--${area}`} data-reveal>
           <div class="frame frame--4x3" style={`--focal: ${item.focal.x}% ${item.focal.y}%`}>
             <Picture
@@ -69,9 +68,6 @@ const cells: { item: MediaItem; area: string; sizes: string; widths: number[] }[
             />
           </div>
           <figcaption>
-            <span class="interiors__num" aria-hidden="true">
-              {String(index + 1).padStart(2, '0')}
-            </span>
             {item.caption[locale]}
           </figcaption>
         </figure>
@@ -92,13 +88,6 @@ const cells: { item: MediaItem; area: string; sizes: string; widths: number[] }[
 
   .interiors__figure--wardrobe {
     order: 1;
-  }
-
-  .interiors__num {
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    color: var(--c-tangerine);
-    margin-right: 0.6rem;
   }
 
   @media (min-width: 64em) {

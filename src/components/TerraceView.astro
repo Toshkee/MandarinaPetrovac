@@ -15,7 +15,7 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
 
 <section class="terrace section" id={tr.anchors.terrace} aria-labelledby="terrace-title">
   <div class="container terrace__head" data-reveal>
-    <SectionHead kicker={tr.terrace.kicker} title={tr.terrace.title} id="terrace-title" />
+    <SectionHead title={tr.terrace.title} id="terrace-title" />
     <p class="terrace__body">{tr.terrace.body}</p>
   </div>
 
@@ -37,7 +37,9 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
 
 <style>
   .terrace {
-    padding-bottom: 0;
+    padding-bottom: 1.5rem;
+    background: var(--c-adriatic);
+    color: var(--c-paper);
   }
 
   .terrace__head {
@@ -47,12 +49,17 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
 
   .terrace__body {
     font-size: var(--text-lg);
-    color: var(--c-ink);
+    color: var(--c-ink-on-dark);
     max-width: 44ch;
   }
 
   .terrace__figure {
     margin-top: 2.5rem;
+  }
+
+  .terrace__figure figcaption {
+    color: var(--c-ink-on-dark);
+    margin-top: 1rem;
   }
 
   .terrace__frame {

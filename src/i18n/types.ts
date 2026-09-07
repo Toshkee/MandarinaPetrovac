@@ -37,32 +37,30 @@ export interface Translations {
     home: string;
   };
   hero: {
-    eyebrow: string;
+    place: string;
     title: string;
+    titleAccent: string;
     text: string;
     ctaPrimary: string;
     ctaSecondary: string;
     caption: string;
   };
   intro: {
-    kicker: string;
     title: string;
     body: string[];
     detailsHeading: string;
     details: string[];
   };
-  interiors: { kicker: string; title: string; body: string };
-  terrace: { kicker: string; title: string; body: string };
-  pool: { kicker: string; title: string; body: string };
+  interiors: { title: string; body: string };
+  terrace: { title: string; body: string };
+  pool: { title: string; body: string };
   gallery: {
-    kicker: string;
     title: string;
     body: string;
     showAll: string;
     lightbox: { dialogLabel: string; close: string; prev: string; next: string; of: string; open: string };
   };
   location: {
-    kicker: string;
     title: string;
     body: string[];
     practicalHeading: string;
@@ -70,7 +68,6 @@ export interface Translations {
     mapCta: string;
   };
   booking: {
-    kicker: string;
     title: string;
     body: string;
     bookingCta: string;
