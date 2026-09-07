@@ -1,0 +1,86 @@
+---
+import { property } from '../config/property';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+---
+
+<div class="booking-bar" data-booking-bar>
+  <span class="booking-bar__label">{tr.bookingBar.label}</span>
+  <a
+    class="btn btn--primary btn--small"
+    href={property.links.booking}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {tr.bookingBar.cta}
+    <span class="sr-only">({tr.footer.externalNote})</span>
+  </a>
+</div>
+
+<script>
+  import '../scripts/booking-bar';
+</script>
+
+<style>
+  /* Small screens only, shown after the hero CTA leaves the viewport. */
+  .booking-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: var(--booking-bar-h);
+    padding: 0.6rem var(--gutter) calc(0.6rem + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--c-paper) 96%, transparent);
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    border-top: 1px solid var(--c-line);
+    transform: translateY(100%);
+    transition:
+      transform var(--dur) var(--ease),
+      visibility var(--dur);
+    visibility: hidden;
+  }
+
+  html.js .booking-bar {
+    display: flex;
+  }
+
+  .booking-bar.is-visible {
+    transform: none;
+    visibility: visible;
+  }
+
+  html.lightbox-open .booking-bar,
+  html.menu-open .booking-bar {
+    transform: translateY(100%);
+    visibility: hidden;
+  }
+
+  .booking-bar__label {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    color: var(--c-ink);
+  }
+
+  @media (min-width: 64em) {
+    html.js .booking-bar {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .booking-bar {
+      transition: none;
+    }
+  }
+</style>

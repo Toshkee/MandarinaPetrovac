@@ -1,0 +1,91 @@
+---
+import { Picture } from 'astro:assets';
+import SectionHead from './SectionHead.astro';
+import { media } from '../content/media';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+const photo = media.petrovacDusk;
+const focal = `${photo.focal.x}% ${photo.focal.y}%`;
+---
+
+<section class="terrace section" id={tr.anchors.terrace} aria-labelledby="terrace-title">
+  <div class="container terrace__head" data-reveal>
+    <SectionHead kicker={tr.terrace.kicker} title={tr.terrace.title} id="terrace-title" />
+    <p class="terrace__body">{tr.terrace.body}</p>
+  </div>
+
+  <figure class="terrace__figure" data-reveal>
+    <div class="frame terrace__frame" style={`--focal: ${focal}`}>
+      <Picture
+        src={photo.src}
+        alt={photo.alt[locale]}
+        formats={['avif', 'webp']}
+        widths={[640, 960, 1280, 1600, 1920, 2293]}
+        sizes="100vw"
+        layout="full-width"
+        loading="lazy"
+      />
+    </div>
+    <figcaption class="container">{photo.caption[locale]}</figcaption>
+  </figure>
+</section>
+
+<style>
+  .terrace {
+    padding-bottom: 0;
+  }
+
+  .terrace__head {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .terrace__body {
+    font-size: var(--text-lg);
+    color: var(--c-ink);
+    max-width: 44ch;
+  }
+
+  .terrace__figure {
+    margin-top: 2.5rem;
+  }
+
+  .terrace__frame {
+    aspect-ratio: 4 / 5;
+    max-height: 44rem;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  @media (min-width: 48em) {
+    .terrace__frame {
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  @media (min-width: 64em) {
+    .terrace__head {
+      grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+      align-items: end;
+      gap: 3rem;
+    }
+
+    .terrace__body {
+      padding-bottom: 0.4rem;
+    }
+
+    .terrace__figure {
+      margin-top: 3.5rem;
+    }
+
+    .terrace__frame {
+      aspect-ratio: 21 / 10;
+      max-height: 46rem;
+    }
+  }
+</style>

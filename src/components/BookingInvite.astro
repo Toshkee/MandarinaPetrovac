@@ -1,0 +1,137 @@
+---
+import { Image } from 'astro:assets';
+import SectionHead from './SectionHead.astro';
+import logo from '../assets/brand/mandarina-sunset-logo.jpg';
+import { property } from '../config/property';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+---
+
+<section
+  class="booking section"
+  id={tr.anchors.booking}
+  aria-labelledby="booking-title"
+  data-booking-bar-stop
+>
+  <div class="container booking__inner" data-reveal>
+    <div class="booking__seal">
+      <Image
+        src={logo}
+        alt={property.fullName}
+        width={144}
+        height={144}
+        densities={[1, 2]}
+        format="webp"
+        loading="lazy"
+        class="booking__logo"
+      />
+    </div>
+    <div class="booking__text">
+      <SectionHead kicker={tr.booking.kicker} title={tr.booking.title} id="booking-title" />
+      <p class="booking__body">{tr.booking.body}</p>
+      <div class="booking__actions">
+        <a
+          class="btn btn--primary"
+          href={property.links.booking}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {tr.booking.bookingCta}
+          <span class="sr-only">({tr.footer.externalNote})</span>
+        </a>
+        {
+          property.links.airbnb && (
+            <a class="btn btn--ghost" href={property.links.airbnb} target="_blank" rel="noopener noreferrer">
+              {tr.booking.airbnbCta}
+              <span class="sr-only">({tr.footer.externalNote})</span>
+            </a>
+          )
+        }
+      </div>
+      <p class="booking__instagram">
+        {tr.booking.instagramLead}
+        <a href={property.links.instagram} target="_blank" rel="noopener noreferrer">
+          @{property.links.instagramHandle}
+          <span class="sr-only">({tr.footer.externalNote})</span>
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .booking {
+    border-top: 1px solid var(--c-line);
+  }
+
+  .booking__inner {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .booking__seal {
+    width: 7rem;
+  }
+
+  .booking__logo {
+    border-radius: 50%;
+    width: 100%;
+    height: auto;
+  }
+
+  .booking__body {
+    margin-top: 1.5rem;
+    font-size: var(--text-lg);
+    max-width: 42ch;
+  }
+
+  .booking__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .booking__actions .btn {
+    width: 100%;
+  }
+
+  .booking__instagram {
+    margin-top: 1.75rem;
+    color: var(--c-ink-soft);
+  }
+
+  .booking__instagram a {
+    color: var(--c-ink);
+    font-weight: 500;
+  }
+
+  @media (min-width: 40em) {
+    .booking__actions {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .booking__actions .btn {
+      width: auto;
+    }
+  }
+
+  @media (min-width: 64em) {
+    .booking__inner {
+      grid-template-columns: 9rem minmax(0, 1fr);
+      column-gap: 4rem;
+      align-items: start;
+    }
+
+    .booking__seal {
+      width: 9rem;
+      margin-top: 0.5rem;
+    }
+  }
+</style>

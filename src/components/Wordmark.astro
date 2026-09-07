@@ -1,0 +1,48 @@
+---
+import CitrusMark from './CitrusMark.astro';
+import { property } from '../config/property';
+
+interface Props {
+  href: string;
+  label: string;
+  /** Dark variant for the footer. */
+  onDark?: boolean;
+}
+const { href, label, onDark = false } = Astro.props;
+---
+
+<a class:list={['wordmark', { 'wordmark--on-dark': onDark }]} href={href} aria-label={label}>
+  <CitrusMark size={22} class="wordmark__mark" />
+  <span class="wordmark__text">{property.wordmark}</span>
+</a>
+
+<style>
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 2.75rem;
+    text-decoration: none;
+    color: var(--c-ink);
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    letter-spacing: 0.005em;
+    line-height: 1;
+  }
+
+  .wordmark:hover {
+    color: var(--c-ink);
+  }
+
+  .wordmark--on-dark {
+    color: var(--c-ink-on-dark);
+  }
+
+  .wordmark--on-dark:hover {
+    color: var(--c-ink-on-dark);
+  }
+
+  .wordmark__text {
+    padding-top: 0.1em;
+  }
+</style>

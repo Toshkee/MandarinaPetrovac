@@ -1,0 +1,148 @@
+---
+import { Picture } from 'astro:assets';
+import SectionHead from './SectionHead.astro';
+import { media, type MediaItem } from '../content/media';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+
+const cells: { item: MediaItem; area: string; sizes: string; widths: number[] }[] = [
+  {
+    item: media.livingRoomBalcony,
+    area: 'living',
+    sizes: '(min-width: 64em) 64vw, 100vw',
+    widths: [480, 640, 800, 960, 1200, 1448],
+  },
+  {
+    item: media.bedroomSeaView,
+    area: 'bedroom',
+    sizes: '(min-width: 64em) 56vw, 100vw',
+    widths: [480, 640, 800, 960, 1200],
+  },
+  {
+    item: media.kitchenBlue,
+    area: 'kitchen',
+    sizes: '(min-width: 64em) 40vw, 100vw',
+    widths: [480, 640, 800, 960],
+  },
+  {
+    item: media.livingRoomFromHall,
+    area: 'hall',
+    sizes: '(min-width: 64em) 56vw, 100vw',
+    widths: [480, 640, 800, 960, 1200],
+  },
+  {
+    item: media.bedroomWardrobeHall,
+    area: 'wardrobe',
+    sizes: '(min-width: 64em) 32vw, 100vw',
+    widths: [480, 640, 800, 960],
+  },
+];
+---
+
+<section class="interiors section" id={tr.anchors.interiors} aria-labelledby="interiors-title">
+  <div class="container interiors__grid">
+    <div class="interiors__head" data-reveal>
+      <SectionHead
+        kicker={tr.interiors.kicker}
+        title={tr.interiors.title}
+        id="interiors-title"
+        lede={tr.interiors.body}
+      />
+    </div>
+    {
+      cells.map(({ item, area, sizes, widths }, index) => (
+        <figure class={`interiors__figure interiors__figure--${area}`} data-reveal>
+          <div class="frame frame--4x3" style={`--focal: ${item.focal.x}% ${item.focal.y}%`}>
+            <Picture
+              src={item.src}
+              alt={item.alt[locale]}
+              formats={['avif', 'webp']}
+              widths={widths}
+              sizes={sizes}
+              layout="full-width"
+              loading="lazy"
+            />
+          </div>
+          <figcaption>
+            <span class="interiors__num" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            {item.caption[locale]}
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .interiors {
+    padding-top: 0;
+  }
+
+  .interiors__grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .interiors__figure--wardrobe {
+    order: 1;
+  }
+
+  .interiors__num {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--c-tangerine);
+    margin-right: 0.6rem;
+  }
+
+  @media (min-width: 64em) {
+    .interiors__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      grid-template-rows: auto auto auto;
+      column-gap: 1.5rem;
+      row-gap: 3rem;
+      align-items: start;
+    }
+
+    .interiors__head {
+      grid-column: 1 / 5;
+      grid-row: 1;
+      padding-top: 1.5rem;
+      padding-right: 1rem;
+    }
+
+    .interiors__figure--living {
+      grid-column: 5 / 13;
+      grid-row: 1;
+    }
+
+    .interiors__figure--bedroom {
+      grid-column: 1 / 8;
+      grid-row: 2;
+    }
+
+    .interiors__figure--kitchen {
+      grid-column: 8 / 13;
+      grid-row: 2;
+      margin-top: 6rem;
+    }
+
+    .interiors__figure--wardrobe {
+      grid-column: 2 / 6;
+      grid-row: 3;
+      order: 0;
+      margin-top: 3rem;
+    }
+
+    .interiors__figure--hall {
+      grid-column: 6 / 13;
+      grid-row: 3;
+    }
+  }
+</style>

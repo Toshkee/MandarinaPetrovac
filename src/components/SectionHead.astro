@@ -1,0 +1,27 @@
+---
+interface Props {
+  kicker: string;
+  title: string;
+  id: string;
+  lede?: string;
+  class?: string;
+}
+const { kicker, title, id, lede, class: className } = Astro.props;
+---
+
+<div class:list={['section-head', className]}>
+  <p class="kicker">{kicker}</p>
+  <h2 id={id}>{title}</h2>
+  {lede && <p class="lede section-head__lede">{lede}</p>}
+</div>
+
+<style>
+  .section-head h2 {
+    max-width: 20ch;
+  }
+
+  .section-head__lede {
+    margin-top: 1.25rem;
+    max-width: 48ch;
+  }
+</style>

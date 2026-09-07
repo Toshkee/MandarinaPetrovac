@@ -1,0 +1,105 @@
+---
+import { Picture } from 'astro:assets';
+import SectionHead from './SectionHead.astro';
+import { media } from '../content/media';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+const photo = media.livingRoomFromHall;
+const focal = `${photo.focal.x}% ${photo.focal.y}%`;
+---
+
+<section class="intro section" id={tr.anchors.apartment} aria-labelledby="intro-title">
+  <div class="container intro__grid">
+    <div class="intro__text" data-reveal>
+      <SectionHead kicker={tr.intro.kicker} title={tr.intro.title} id="intro-title" />
+      <div class="intro__body prose">
+        {tr.intro.body.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <div class="intro__details">
+        <h3 class="intro__details-title">{tr.intro.detailsHeading}</h3>
+        <ul class="intro__list">
+          {tr.intro.details.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </div>
+
+    <figure class="intro__figure" data-reveal>
+      <div class="frame frame--4x3" style={`--focal: ${focal}`}>
+        <Picture
+          src={photo.src}
+          alt={photo.alt[locale]}
+          formats={['avif', 'webp']}
+          widths={[480, 640, 800, 960, 1200]}
+          sizes="(min-width: 64em) 52vw, 100vw"
+          layout="full-width"
+          loading="lazy"
+        />
+      </div>
+      <figcaption>{photo.caption[locale]}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .intro__grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .intro__body {
+    margin-top: 1.5rem;
+  }
+
+  .intro__details {
+    margin-top: 2.25rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--c-line);
+  }
+
+  .intro__details-title {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-ink-soft);
+    margin-bottom: 0.75rem;
+  }
+
+  .intro__list {
+    display: grid;
+    gap: 0;
+  }
+
+  .intro__list li {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--c-line);
+    line-height: 1.4;
+  }
+
+  @media (min-width: 48em) {
+    .intro__list {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 2rem;
+    }
+  }
+
+  @media (min-width: 64em) {
+    .intro__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(2.5rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .intro__figure {
+      position: sticky;
+      top: calc(var(--header-h) + 1.5rem);
+      margin-top: 0.5rem;
+    }
+  }
+</style>

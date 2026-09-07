@@ -1,0 +1,318 @@
+---
+import Wordmark from './Wordmark.astro';
+import { property } from '../config/property';
+import { t, localePath, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+const a = tr.anchors;
+const links = [
+  { href: `#${a.apartment}`, label: tr.nav.apartment },
+  { href: `#${a.gallery}`, label: tr.nav.gallery },
+  { href: `#${a.location}`, label: tr.nav.location },
+];
+---
+
+<header class="site-header" data-header>
+  <div class="container container--wide site-header__inner">
+    <Wordmark href={localePath[locale]} label={tr.nav.home} />
+
+    <div class="site-header__quick">
+      <a
+        class="btn btn--primary btn--small site-header__book"
+        href={property.links.booking}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {tr.nav.bookingShort}
+        <span class="sr-only">({tr.footer.externalNote})</span>
+      </a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        data-menu-toggle
+      >
+        <span class="menu-toggle__icon" aria-hidden="true"></span>
+        <span class="menu-toggle__label menu-toggle__label--open">{tr.nav.menu}</span>
+        <span class="menu-toggle__label menu-toggle__label--close">{tr.nav.close}</span>
+      </button>
+    </div>
+
+    <nav id="site-nav" class="site-nav" aria-label={tr.nav.menu}>
+      <ul class="site-nav__list">
+        {
+          links.map((link) => (
+            <li>
+              <a class="site-nav__link" href={link.href}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="site-nav__aside">
+        <a
+          class="site-nav__lang"
+          href={tr.switchTo.href}
+          hreflang={tr.switchTo.lang}
+          lang={tr.switchTo.lang}
+          aria-label={`${tr.nav.langSwitch}: ${tr.switchTo.label}`}
+        >
+          {tr.switchTo.label}
+        </a>
+        <a
+          class="btn btn--primary btn--small site-nav__book"
+          href={property.links.booking}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {tr.nav.booking}
+          <span class="sr-only">({tr.footer.externalNote})</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  import '../scripts/menu';
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in srgb, var(--c-paper) 94%, transparent);
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--c-line);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: var(--header-h);
+    flex-wrap: wrap;
+  }
+
+  .site-header__quick {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: none;
+  }
+
+  /* Below 40em the booking link lives in the hero, the menu panel and the bottom bar. */
+  .site-header__book {
+    display: none;
+  }
+
+  @media (min-width: 40em) {
+    .site-header__book {
+      display: inline-flex;
+    }
+  }
+
+  /* Menu button: three bars that become a cross. */
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 2.75rem;
+    min-width: 2.75rem;
+    padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+    background: none;
+    border: 0;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9375rem;
+  }
+
+  .menu-toggle__icon {
+    position: relative;
+    width: 1.25rem;
+    height: 0.75rem;
+    display: block;
+  }
+
+  .menu-toggle__icon::before,
+  .menu-toggle__icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: currentColor;
+    transition:
+      transform var(--dur) var(--ease),
+      top var(--dur) var(--ease);
+  }
+
+  .menu-toggle__icon::before {
+    top: 0;
+  }
+
+  .menu-toggle__icon::after {
+    top: calc(100% - 1.5px);
+  }
+
+  .menu-toggle[aria-expanded='true'] .menu-toggle__icon::before {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded='true'] .menu-toggle__icon::after {
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+  }
+
+  .menu-toggle__label--close,
+  .menu-toggle[aria-expanded='true'] .menu-toggle__label--open {
+    display: none;
+  }
+
+  .menu-toggle[aria-expanded='true'] .menu-toggle__label--close {
+    display: inline;
+  }
+
+  /* Navigation: a calm full-width panel under the header on small screens. */
+  .site-nav {
+    flex-basis: 100%;
+    padding: 0.5rem 0 1.25rem;
+  }
+
+  html.js .site-nav {
+    display: none;
+  }
+
+  html.js .site-header.is-open .site-nav {
+    display: block;
+  }
+
+  html:not(.js) .menu-toggle {
+    display: none;
+  }
+
+  .site-nav__list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--c-line);
+  }
+
+  .site-nav__link {
+    display: flex;
+    align-items: center;
+    min-height: 3.25rem;
+    padding: 0.5rem 0;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--c-line);
+  }
+
+  .site-nav__aside {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.25rem;
+  }
+
+  .site-nav__lang {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid var(--c-line-strong);
+  }
+
+  .site-nav__book {
+    display: inline-flex;
+  }
+
+  @media (min-width: 40em) and (max-width: 63.99em) {
+    .site-nav__book {
+      display: none;
+    }
+  }
+
+  @media (min-width: 64em) {
+    .site-header__inner {
+      flex-wrap: nowrap;
+    }
+
+    .site-header__quick {
+      display: none;
+    }
+
+    .site-nav,
+    html.js .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      flex-basis: auto;
+      padding: 0;
+    }
+
+    .site-nav__list {
+      flex-direction: row;
+      gap: 2rem;
+      border: 0;
+    }
+
+    .site-nav__link {
+      min-height: 2.75rem;
+      padding: 0;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 500;
+      border: 0;
+      position: relative;
+    }
+
+    .site-nav__link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0.45rem;
+      height: 1px;
+      background: var(--c-burnt);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--dur) var(--ease);
+    }
+
+    .site-nav__link:hover::after,
+    .site-nav__link:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    .site-nav__aside {
+      padding: 0;
+      gap: 1.5rem;
+    }
+
+    .site-nav__book {
+      display: inline-flex;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-toggle__icon::before,
+    .menu-toggle__icon::after,
+    .site-nav__link::after {
+      transition: none;
+    }
+  }
+</style>

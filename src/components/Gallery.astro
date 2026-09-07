@@ -1,0 +1,147 @@
+---
+import { Picture, getImage } from 'astro:assets';
+import SectionHead from './SectionHead.astro';
+import { media, galleryOrder, galleryInitialCount } from '../content/media';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+
+/**
+ * Each thumbnail links to a large WebP rendition so the gallery works without
+ * JavaScript; the lightbox script intercepts the click and reads the same data.
+ */
+const items = await Promise.all(
+  galleryOrder.map(async (id) => {
+    const item = media[id];
+    const large = await getImage({
+      src: item.src,
+      format: 'webp',
+      widths: [900, 1400, 1800],
+      sizes: '100vw',
+      quality: 82,
+    });
+    return { item, large };
+  }),
+);
+---
+
+<section class="gallery section" id={tr.anchors.gallery} aria-labelledby="gallery-title">
+  <div class="container">
+    <div data-reveal>
+      <SectionHead
+        kicker={tr.gallery.kicker}
+        title={tr.gallery.title}
+        id="gallery-title"
+        lede={tr.gallery.body}
+      />
+    </div>
+
+    <ul class="gallery__grid" data-gallery>
+      {
+        items.map(({ item, large }, index) => (
+          <li
+            class="gallery__cell"
+            data-gallery-extra={index >= galleryInitialCount ? '' : undefined}
+          >
+            <a
+              class="gallery__item"
+              href={large.src}
+              data-lightbox-item
+              data-srcset={large.srcSet.attribute}
+              data-width={large.attributes.width}
+              data-height={large.attributes.height}
+              data-alt={item.alt[locale]}
+              data-caption={item.caption[locale]}
+              aria-label={`${tr.gallery.lightbox.open}: ${item.caption[locale]}`}
+            >
+              <span class="frame frame--4x3" style={`--focal: ${item.focal.x}% ${item.focal.y}%`}>
+                <Picture
+                  src={item.src}
+                  alt=""
+                  formats={['avif', 'webp']}
+                  widths={[320, 480, 640, 900]}
+                  sizes="(min-width: 64em) 30vw, (min-width: 48em) 33vw, 50vw"
+                  layout="full-width"
+                  loading="lazy"
+                />
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="gallery__more-wrap">
+      <button class="btn btn--ghost" type="button" data-gallery-more>
+        {tr.gallery.showAll}
+        <span class="gallery__count" aria-hidden="true">({items.length})</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+  }
+
+  .gallery__item {
+    display: block;
+    border-radius: var(--radius);
+  }
+
+  .gallery__item .frame {
+    display: block;
+  }
+
+  .gallery__item :global(img) {
+    transition: transform var(--dur-slow) var(--ease);
+  }
+
+  .gallery__item:hover :global(img),
+  .gallery__item:focus-visible :global(img) {
+    transform: scale(1.025);
+  }
+
+  html.js .gallery__grid:not(.is-expanded) [data-gallery-extra] {
+    display: none;
+  }
+
+  html:not(.js) .gallery__more-wrap {
+    display: none;
+  }
+
+  .gallery__more-wrap {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .gallery__count {
+    color: var(--c-ink-soft);
+  }
+
+  @media (min-width: 48em) {
+    .gallery__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gallery__item :global(img) {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  import '../scripts/gallery';
+</script>

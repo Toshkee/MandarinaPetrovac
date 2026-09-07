@@ -1,0 +1,111 @@
+---
+import '@fontsource/dm-serif-display/400.css';
+import '@fontsource/dm-sans/400.css';
+import '@fontsource/dm-sans/500.css';
+import '../styles/global.css';
+import serifLatin from '@fontsource/dm-serif-display/files/dm-serif-display-latin-400-normal.woff2?url';
+import serifLatinExt from '@fontsource/dm-serif-display/files/dm-serif-display-latin-ext-400-normal.woff2?url';
+import sansLatin from '@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2?url';
+import { getImage } from 'astro:assets';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BookingBar from '../components/BookingBar.astro';
+import { media } from '../content/media';
+import { property } from '../config/property';
+import { t, localePath, locales, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  /** Site-relative path of this page, e.g. '/' or '/en/'. */
+  path: string;
+  title?: string;
+  description?: string;
+  showBookingBar?: boolean;
+  noindex?: boolean;
+  structuredData?: Record<string, unknown>;
+}
+
+const { locale, path, showBookingBar = true, noindex = false, structuredData } = Astro.props;
+const tr = t(locale);
+const title = Astro.props.title ?? tr.meta.title;
+const description = Astro.props.description ?? tr.meta.description;
+
+/** Absolute URLs exist only once SITE_URL is configured; nothing is invented. */
+const site = Astro.site;
+const absolute = (relative: string): string | undefined => (site ? new URL(relative, site).href : undefined);
+const canonical = absolute(path);
+
+const social = await getImage({
+  src: media.terraceViewDay.src,
+  width: 1200,
+  height: 630,
+  fit: 'cover',
+  position: 'centre',
+  format: 'jpg',
+  quality: 82,
+});
+const socialUrl = absolute(social.src);
+
+const jsonLd = structuredData
+  ? JSON.stringify({
+      ...structuredData,
+      ...(canonical ? { url: canonical } : {}),
+      ...(socialUrl ? { image: [socialUrl] } : {}),
+    })
+  : null;
+---
+
+<html lang={tr.langTag}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    {
+      site &&
+        locales.map((code) => (
+          <link rel="alternate" hreflang={t(code).langTag} href={absolute(localePath[code])} />
+        ))
+    }
+    {site && <link rel="alternate" hreflang="x-default" href={absolute('/')} />}
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#fbf7ef" />
+
+    <link rel="preload" as="font" type="font/woff2" href={serifLatin} crossorigin />
+    {locale === 'me' && <link rel="preload" as="font" type="font/woff2" href={serifLatinExt} crossorigin />}
+    <link rel="preload" as="font" type="font/woff2" href={sansLatin} crossorigin />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={property.fullName} />
+    <meta property="og:locale" content={tr.ogLocale} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {socialUrl && <meta property="og:image" content={socialUrl} />}
+    {socialUrl && <meta property="og:image:width" content="1200" />}
+    {socialUrl && <meta property="og:image:height" content="630" />}
+    {socialUrl && <meta property="og:image:alt" content={tr.meta.ogAlt} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="generator" content={Astro.generator} />
+
+    {jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{tr.nav.skip}</a>
+    <Header locale={locale} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    {showBookingBar && <BookingBar locale={locale} />}
+  </body>
+</html>

@@ -1,0 +1,101 @@
+---
+import { Picture } from 'astro:assets';
+import SectionHead from './SectionHead.astro';
+import { media } from '../content/media';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+const pool = media.poolSeaView;
+const building = media.buildingPoolOlive;
+---
+
+<section class="pool section" id={tr.anchors.pool} aria-labelledby="pool-title">
+  <div class="container pool__grid">
+    <div class="pool__text" data-reveal>
+      <SectionHead kicker={tr.pool.kicker} title={tr.pool.title} id="pool-title" />
+      <p class="pool__body">{tr.pool.body}</p>
+    </div>
+
+    <figure class="pool__figure pool__figure--pool" data-reveal>
+      <div class="frame frame--4x5" style={`--focal: ${pool.focal.x}% ${pool.focal.y}%`}>
+        <Picture
+          src={pool.src}
+          alt={pool.alt[locale]}
+          formats={['avif', 'webp']}
+          widths={[480, 720, 960, 1320]}
+          sizes="(min-width: 64em) 36vw, 100vw"
+          layout="full-width"
+          loading="lazy"
+        />
+      </div>
+      <figcaption>{pool.caption[locale]}</figcaption>
+    </figure>
+
+    <figure class="pool__figure pool__figure--building" data-reveal>
+      <div class="frame frame--4x5" style={`--focal: ${building.focal.x}% ${building.focal.y}%`}>
+        <Picture
+          src={building.src}
+          alt={building.alt[locale]}
+          formats={['avif', 'webp']}
+          widths={[480, 720, 1024]}
+          sizes="(min-width: 64em) 28vw, 100vw"
+          layout="full-width"
+          loading="lazy"
+        />
+      </div>
+      <figcaption>{building.caption[locale]}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .pool__grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .pool__body {
+    margin-top: 1.5rem;
+    font-size: var(--text-lg);
+    max-width: 40ch;
+  }
+
+  @media (min-width: 48em) {
+    .pool__grid {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 1.5rem;
+    }
+
+    .pool__text {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (min-width: 64em) {
+    .pool__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 1.5rem;
+      align-items: start;
+    }
+
+    .pool__text {
+      grid-column: 1 / 5;
+      padding-right: 1.5rem;
+      position: sticky;
+      top: calc(var(--header-h) + 1.5rem);
+    }
+
+    .pool__figure--pool {
+      grid-column: 5 / 10;
+    }
+
+    .pool__figure--building {
+      grid-column: 10 / 13;
+      margin-top: 6rem;
+    }
+  }
+</style>

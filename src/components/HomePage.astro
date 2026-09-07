@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from './Hero.astro';
+import Intro from './Intro.astro';
+import Interiors from './Interiors.astro';
+import TerraceView from './TerraceView.astro';
+import Pool from './Pool.astro';
+import Gallery from './Gallery.astro';
+import Lightbox from './Lightbox.astro';
+import Location from './Location.astro';
+import BookingInvite from './BookingInvite.astro';
+import { property, confirmedAmenities } from '../config/property';
+import { t, localePath, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+
+/** Accommodation structured data built only from verified facts. */
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  additionalType: 'https://schema.org/Apartment',
+  name: property.fullName,
+  alternateName: property.wordmark,
+  description: tr.meta.description,
+  inLanguage: tr.langTag,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: property.location.town,
+    addressCountry: property.location.countryCode,
+  },
+  sameAs: [property.links.instagram, property.links.booking],
+  amenityFeature: confirmedAmenities.map((amenity) => ({
+    '@type': 'LocationFeatureSpecification',
+    name: amenity[locale],
+    value: true,
+  })),
+};
+---
+
+<Base locale={locale} path={localePath[locale]} structuredData={structuredData}>
+  <Hero locale={locale} />
+  <Intro locale={locale} />
+  <Interiors locale={locale} />
+  <TerraceView locale={locale} />
+  <Pool locale={locale} />
+  <Gallery locale={locale} />
+  <Location locale={locale} />
+  <BookingInvite locale={locale} />
+  <Lightbox locale={locale} />
+</Base>
+
+<script>
+  import '../scripts/reveal';
+</script>

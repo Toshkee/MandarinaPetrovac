@@ -1,0 +1,90 @@
+---
+import SectionHead from './SectionHead.astro';
+import { property } from '../config/property';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const tr = t(locale);
+---
+
+<section class="location section section--sand" id={tr.anchors.location} aria-labelledby="location-title">
+  <div class="container location__grid">
+    <div class="location__text" data-reveal>
+      <SectionHead kicker={tr.location.kicker} title={tr.location.title} id="location-title" />
+      <div class="location__body prose">
+        {tr.location.body.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+
+    <aside class="location__aside" data-reveal aria-labelledby="location-practical">
+      <h3 id="location-practical" class="location__aside-title">{tr.location.practicalHeading}</h3>
+      <ul class="location__list">
+        {tr.location.practical.map((item) => <li>{item}</li>)}
+      </ul>
+      <a class="text-link location__map" href={property.links.map} target="_blank" rel="noopener noreferrer">
+        {tr.location.mapCta}
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+          <path d="M3 8h9m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+        </svg>
+        <span class="sr-only">({tr.footer.externalNote})</span>
+      </a>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .location__grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .location__body {
+    margin-top: 1.5rem;
+  }
+
+  .location__aside {
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--c-line-strong);
+  }
+
+  .location__aside-title {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-ink-soft);
+  }
+
+  .location__list {
+    margin-top: 0.75rem;
+  }
+
+  .location__list li {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--c-line);
+    line-height: 1.4;
+  }
+
+  .location__map {
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 64em) {
+    .location__grid {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+      column-gap: clamp(3rem, 8vw, 8rem);
+      align-items: start;
+    }
+
+    .location__aside {
+      border-top: 0;
+      padding-top: 0.5rem;
+      padding-left: 2rem;
+      border-left: 1px solid var(--c-line-strong);
+    }
+  }
+</style>

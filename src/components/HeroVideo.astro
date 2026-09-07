@@ -1,0 +1,102 @@
+---
+/**
+ * Optional silent hero loop. Rendered only when `property.heroVideo` is set.
+ * The poster is a fully optimised photograph; the video attaches its source only
+ * after the page has checked reduced-motion and data-saver preferences.
+ * On any failure the poster stays in place.
+ */
+import { Picture } from 'astro:assets';
+import type { HeroVideo } from '../config/property';
+import type { MediaItem } from '../content/media';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  poster: MediaItem;
+  video: HeroVideo;
+}
+const { locale, poster, video } = Astro.props;
+const tr = t(locale);
+const focal = `${poster.focal.x}% ${poster.focal.y}%`;
+---
+
+<div class="hero-video frame" data-hero-video data-video-state="poster" style={`--focal: ${focal}`}>
+  <Picture
+    class="hero-video__poster"
+    src={poster.src}
+    alt={poster.alt[locale]}
+    formats={['avif', 'webp']}
+    widths={[480, 720, 960, 1200, 1448]}
+    sizes="(min-width: 64em) 58vw, 100vw"
+    layout="full-width"
+    priority
+  />
+  <video
+    class="hero-video__video"
+    muted
+    playsinline
+    loop
+    preload="none"
+    width={video.width}
+    height={video.height}
+    aria-hidden="true"
+    tabindex="-1"
+  >
+    {video.webm && <source data-src={video.webm} type="video/webm" />}
+    <source data-src={video.mp4} type="video/mp4" />
+  </video>
+  <button class="hero-video__toggle" type="button" data-video-toggle hidden>
+    <span data-video-label-pause>{tr.video.pause}</span>
+    <span data-video-label-play hidden>{tr.video.play}</span>
+  </button>
+</div>
+
+<script>
+  import '../scripts/hero-video';
+</script>
+
+<style>
+  .hero-video {
+    position: relative;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .hero-video__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--focal, 50% 50%);
+    opacity: 0;
+    transition: opacity var(--dur-slow) var(--ease);
+  }
+
+  .hero-video[data-video-state='playing'] .hero-video__video,
+  .hero-video[data-video-state='paused'] .hero-video__video {
+    opacity: 1;
+  }
+
+  .hero-video__toggle {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.9rem;
+    border: 0;
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--c-paper) 92%, transparent);
+    color: var(--c-ink);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  @media (min-width: 64em) {
+    .hero-video__toggle {
+      right: 1.5rem;
+      bottom: 1.5rem;
+    }
+  }
+</style>
