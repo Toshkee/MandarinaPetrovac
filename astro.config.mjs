@@ -3,11 +3,11 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 /**
- * SITE_URL can override the production origin. On Vercel, use the stable project
- * domain for canonical URLs, hreflang links and the sitemap, including previews.
+ * SITE_URL is the production origin (set it in the Cloudflare Pages build variables once
+ * the domain is connected). Preview deployments fall back to CF_PAGES_URL, the per-deploy
+ * *.pages.dev address, so canonical URLs, hreflang links and the sitemap stay correct there.
  */
-const productionDomain = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
-const siteUrl = process.env.SITE_URL?.trim() || (productionDomain ? `https://${productionDomain}` : undefined);
+const siteUrl = process.env.SITE_URL?.trim() || process.env.CF_PAGES_URL?.trim() || undefined;
 
 export default defineConfig({
   site: siteUrl,

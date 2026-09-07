@@ -70,10 +70,10 @@ the `i18n` block in `astro.config.mjs`.
 
 ## Domain, canonical URLs, sitemap
 
-On Vercel, `VERCEL_PROJECT_PRODUCTION_URL` supplies the stable production domain for canonical
-links, hreflang alternates, `og:url`, `og:image`, the sitemap and `robots.txt`. Set `SITE_URL`
-(see `.env.example`) to override it or when using another host. Local builds without either
-variable omit absolute metadata and the sitemap.
+`SITE_URL` (see `.env.example`) supplies the production origin for canonical links, hreflang
+alternates, `og:url`, `og:image`, the sitemap and `robots.txt`. Set it in the Cloudflare Pages
+build variables for the Production environment. Preview deployments fall back to `CF_PAGES_URL`.
+Local builds without either variable omit absolute metadata and the sitemap.
 
 ## Optional hero video
 
@@ -94,10 +94,21 @@ Everything remains readable and navigable with JavaScript disabled.
 
 ## Deployment
 
-`npm run build` writes static files to `dist/`. Any static host or CDN works (Netlify, Cloudflare
-Pages, Vercel, GitHub Pages, S3+CloudFront). On Vercel, `vercel.json` configures the Astro preset,
-`npm ci`, `npm run build` and `dist/`. Run `vercel --prod` from the linked project to publish.
-On other hosts, set `SITE_URL` in the build environment. Hashed
-assets under `/_astro/` can be cached for a year; HTML should be served with a short cache. The
-largest transfers are the photographs; the hero loads eagerly with `fetchpriority="high"`,
-everything below the fold is lazy.
+`npm run build` writes static files to `dist/`. The site is hosted on Cloudflare Pages.
+
+- **Git integration (recommended).** In the Cloudflare dashboard, Workers & Pages → Create →
+  Pages → connect the GitHub repository. Build command `npm run build`, output directory `dist`.
+  Node 24 is picked up from `.nvmrc`. Every push to `main` deploys production; other branches get
+  preview URLs.
+- **Build variables.** `SITE_URL=https://<your-domain>` for the Production environment. Nothing
+  else is required.
+- **Custom domain.** Pages → Custom domains → add the domain. With the domain's DNS already on
+  Cloudflare, the CNAME and certificate are created automatically.
+- **Manual deploy** (alternative to Git integration): `npx wrangler login`, then
+  `npx wrangler pages deploy dist --project-name mandarina-petrovac` after a local build.
+  `wrangler.toml` records the project name and output directory.
+
+`public/_headers` sets the cache policy: hashed assets under `/_astro/` are immutable for a year,
+HTML is revalidated on every request. It also adds basic security headers. The largest transfers
+are the photographs; the hero loads eagerly with `fetchpriority="high"`, everything below the fold
+is lazy.

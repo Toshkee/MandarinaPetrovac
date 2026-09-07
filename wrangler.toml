@@ -1,0 +1,5 @@
+# Cloudflare Pages project settings used by `wrangler pages deploy`.
+# The Git integration in the dashboard does not need this file.
+name = "mandarina-petrovac"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-09-01"
