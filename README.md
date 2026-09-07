@@ -7,6 +7,7 @@ Booking.com and Airbnb. There is no onsite booking form, database, CMS or analyt
 ## Commands
 
 ```bash
+nvm use            # selects Node 24 from .nvmrc; run nvm install if it is not installed
 npm install        # installs dependencies from package-lock.json
 npm run dev        # dev server (Astro 7 runs it in the background: `npx astro dev status|logs|stop`)
 npm run check      # astro check: TypeScript and component diagnostics
@@ -14,7 +15,8 @@ npm run build      # production build into dist/
 npm run preview    # serves dist/ (prints the URL; another project may already hold port 4321)
 ```
 
-Node 22.12 or newer is required (`engines` in package.json).
+Node 22.12 or newer is required (`engines` in package.json). This project selects Node 24
+through `.nvmrc`. Run `nvm use` when entering the project in a new terminal.
 
 ## Where things live
 
