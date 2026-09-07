@@ -1,0 +1,161 @@
+---
+import SectionHead from './SectionHead.astro';
+import { property } from '../config/property';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const tr = t(locale);
+---
+
+<section class="reviews section" aria-labelledby="reviews-title">
+  <div class="container">
+    <div class="reviews__head" data-reveal>
+      <div>
+        <SectionHead title={tr.reviews.title} id="reviews-title" />
+      </div>
+      <div class="reviews__score" aria-label={`${property.reviews.bookingScore} / 10, ${tr.reviews.scoreLabel}`}>
+        <strong>{property.reviews.bookingScore.toLocaleString(locale === 'me' ? 'sr-ME' : 'en-GB')}</strong>
+        <span>/ 10</span>
+        <p>{tr.reviews.scoreLabel}</p>
+        <small>{property.reviews.count} {tr.reviews.countLabel}</small>
+      </div>
+    </div>
+
+    <div class="reviews__grid">
+      {
+        tr.reviews.items.map((review) => (
+          <figure class="review" data-reveal>
+            <blockquote>{review.quote}</blockquote>
+            <figcaption>
+              <strong>{review.name}</strong>
+              <span>{review.country}</span>
+              <small>{tr.reviews.translatedLabel}</small>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <div class="reviews__foot">
+      <p>{tr.reviews.verifiedLabel}</p>
+      <a class="text-link" href={property.links.booking} target="_blank" rel="noopener noreferrer">
+        {tr.reviews.sourceCta}
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M3 8h9m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+        </svg>
+        <span class="sr-only">({tr.footer.externalNote})</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews {
+    background: var(--c-paper);
+  }
+
+  .reviews__head {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .reviews__score {
+    width: fit-content;
+    min-width: 11rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--c-line-strong);
+  }
+
+  .reviews__score strong {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 0.9;
+  }
+
+  .reviews__score > span {
+    color: var(--c-ink-soft);
+    font-size: var(--text-sm);
+  }
+
+  .reviews__score p {
+    margin-top: 0.55rem;
+    font-weight: 500;
+  }
+
+  .reviews__score small {
+    display: block;
+    margin-top: 0.15rem;
+    color: var(--c-ink-soft);
+  }
+
+  .reviews__grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2.25rem;
+  }
+
+  .review {
+    min-height: 12rem;
+    padding-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 1px solid var(--c-line);
+  }
+
+  .review blockquote {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(1.35rem, 1.15rem + 0.45vw, 1.7rem);
+    line-height: 1.3;
+  }
+
+  .review figcaption {
+    display: grid;
+    gap: 0.1rem;
+    margin-top: 2rem;
+  }
+
+  .review figcaption strong {
+    color: var(--c-ink);
+    font-size: var(--text-sm);
+  }
+
+  .review figcaption span,
+  .review figcaption small {
+    color: var(--c-ink-soft);
+    font-size: var(--text-xs);
+  }
+
+  .reviews__foot {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+    color: var(--c-ink-soft);
+    font-size: var(--text-sm);
+  }
+
+  @media (min-width: 48em) {
+    .reviews__head {
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+    }
+
+    .reviews__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .reviews__foot {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>

@@ -28,6 +28,8 @@ export interface Property {
     town: string;
     country: Localized;
     countryCode: string;
+    streetAddress: string;
+    postalCode: string;
   };
   links: {
     /**
@@ -40,12 +42,32 @@ export interface Property {
     airbnb: string | null;
     instagram: string;
     instagramHandle: string;
-    /** General map destination for the town. Replace with the exact pin once confirmed. */
+    /** Public map search for the residence; replace with an exact pin if the owner supplies one. */
     map: string;
   };
   contact: {
     email: string | null;
     phone: string | null;
+  };
+  details: {
+    guests: number;
+    bedrooms: number;
+    bathrooms: number;
+    sizeSquareMeters: number;
+    floor: number;
+    beds: { king: number; sofaBed: number };
+    freeWifi: boolean;
+    freePrivateParking: boolean;
+    elevator: boolean;
+    beachMeters: number;
+    supermarketMeters: number;
+    checkIn: string;
+    checkOut: string;
+  };
+  reviews: {
+    bookingScore: number;
+    count: number;
+    verifiedAt: string;
   };
   /** Optional silent hero loop. `null` keeps the photographic hero. */
   heroVideo: HeroVideo | null;
@@ -58,25 +80,46 @@ export const property: Property = {
     town: 'Petrovac',
     country: { me: 'Crna Gora', en: 'Montenegro' },
     countryCode: 'ME',
+    streetAddress: 'Olive Residence, Apartment A14, floor 3',
+    postalCode: '85300',
   },
   links: {
     booking: 'https://www.booking.com/hotel/me/mandarina-sunset-apartment.html',
     airbnb: 'https://www.airbnb.com/rooms/1678841843244205215',
     instagram: 'https://www.instagram.com/mandarina_petrovac/',
     instagramHandle: 'mandarina_petrovac',
-    map: 'https://www.google.com/maps/search/?api=1&query=Petrovac%2C%20Montenegro',
+    map: 'https://www.google.com/maps/search/?api=1&query=Olive%20Residence%20Petrovac%20Montenegro',
   },
   contact: {
     email: null,
     phone: null,
   },
+  details: {
+    guests: 4,
+    bedrooms: 1,
+    bathrooms: 1,
+    sizeSquareMeters: 44,
+    floor: 3,
+    beds: { king: 1, sofaBed: 1 },
+    freeWifi: true,
+    freePrivateParking: true,
+    elevator: true,
+    beachMeters: 750,
+    supermarketMeters: 450,
+    checkIn: '14:00–22:00',
+    checkOut: '08:00–11:00',
+  },
+  reviews: {
+    bookingScore: 9.9,
+    count: 7,
+    verifiedAt: '2026-09-07',
+  },
   heroVideo: null,
 };
 
 /**
- * Amenities confirmed from the supplied photographs. They feed the structured data
- * (schema.org LocationFeatureSpecification) and must stay in sync with the
- * `intro.details` translations.
+ * Amenities confirmed from the supplied photographs and the public Booking.com
+ * listing on 2026-09-07. They feed the structured data.
  */
 export const confirmedAmenities: Localized[] = [
   { me: 'Pogled na more', en: 'Sea view' },
@@ -85,4 +128,7 @@ export const confirmedAmenities: Localized[] = [
   { me: 'Opremljena kuhinja', en: 'Kitchen' },
   { me: 'Veš mašina', en: 'Washing machine' },
   { me: 'Bazen u sklopu kompleksa', en: 'Pool in the complex' },
+  { me: 'Besplatan Wi-Fi', en: 'Free Wi-Fi' },
+  { me: 'Besplatan privatni parking', en: 'Free private parking' },
+  { me: 'Lift', en: 'Lift' },
 ];

@@ -1,7 +1,6 @@
 ---
 import { Picture } from 'astro:assets';
 import HeroVideo from './HeroVideo.astro';
-import MagneticLink from './MagneticLink.astro';
 import { media } from '../content/media';
 import { property } from '../config/property';
 import { t, type Locale } from '../i18n';
@@ -12,8 +11,8 @@ interface Props {
 const { locale } = Astro.props;
 const tr = t(locale);
 
-/** The view alone, photographed from the terrace: no furniture, just Petrovac and the sea. */
-const photo = media.petrovacDusk;
+/** Lead with the experience itself: a seat on the terrace, above Petrovac and the sea. */
+const photo = media.heroBalconyView;
 const focal = `${photo.focal.x}% ${photo.focal.y}%`;
 ---
 
@@ -28,7 +27,8 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
             src={photo.src}
             alt={photo.alt[locale]}
             formats={['avif', 'webp']}
-            widths={[640, 960, 1280, 1600, 1920, 2293]}
+            fallbackFormat="jpg"
+            widths={[640, 960, 1280, 1600]}
             sizes="100vw"
             layout="full-width"
             priority
@@ -44,23 +44,10 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
       <p class="hero__place">{tr.hero.place}</p>
       <p class="hero__text">{tr.hero.text}</p>
       <div class="hero__actions" data-hero-cta>
-        <MagneticLink class="hero__cta" href={property.links.booking} external>
+        <a class="btn btn--primary hero__cta" href={property.links.booking} target="_blank" rel="noopener noreferrer">
           {tr.hero.ctaPrimary}
           <span class="sr-only">({tr.footer.externalNote})</span>
-        </MagneticLink>
-        {
-          property.links.airbnb && (
-            <a
-              class="btn btn--outline-light hero__cta"
-              href={property.links.airbnb}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {tr.booking.airbnbCta}
-              <span class="sr-only">({tr.footer.externalNote})</span>
-            </a>
-          )
-        }
+        </a>
         <a class="text-link hero__link" href={`#${tr.anchors.gallery}`}>
           {tr.hero.ctaSecondary}
           <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -78,7 +65,7 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
     position: relative;
     isolation: isolate;
     display: grid;
-    min-height: clamp(36rem, calc(100svh - var(--header-h)), 52rem);
+    min-height: clamp(37rem, calc(100svh - var(--header-h)), 54rem);
     background: var(--c-adriatic);
     color: var(--c-paper);
   }
@@ -103,9 +90,9 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
     pointer-events: none;
     background: linear-gradient(
       to bottom,
-      rgb(14 30 36 / 0.06) 10%,
-      rgb(14 30 36 / 0.22) 40%,
-      rgb(14 30 36 / 0.82) 100%
+      rgb(14 30 36 / 0.08) 8%,
+      rgb(14 30 36 / 0.24) 38%,
+      rgb(14 30 36 / 0.88) 100%
     );
   }
 
@@ -120,11 +107,11 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
 
   .hero__panel {
     width: 100%;
-    max-width: 44rem;
+    max-width: 46rem;
   }
 
   .hero__title {
-    max-width: 12ch;
+    max-width: 11ch;
     font-size: clamp(2.75rem, 1.5rem + 3.6vw, 4.9rem);
     line-height: 1.02;
     letter-spacing: -0.04em;
@@ -198,8 +185,8 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
     /* Wider screens: darken the left edge behind the words, keep the sea on the right open. */
     .hero__media::after {
       background:
-        linear-gradient(90deg, rgb(14 30 36 / 0.62), rgb(14 30 36 / 0.1) 65%),
-        linear-gradient(to bottom, transparent 30%, rgb(14 30 36 / 0.6));
+        linear-gradient(90deg, rgb(14 30 36 / 0.68), rgb(14 30 36 / 0.08) 68%),
+        linear-gradient(to bottom, transparent 24%, rgb(14 30 36 / 0.7));
     }
   }
 

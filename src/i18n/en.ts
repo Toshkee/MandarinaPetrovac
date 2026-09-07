@@ -9,7 +9,7 @@ export const en: Translations = {
   meta: {
     title: 'Mandarina · Sea-view apartment in Petrovac, Montenegro',
     description:
-      'Mandarina is a bright apartment above Petrovac, Montenegro: a terrace facing the Adriatic, a bedroom with a sea view and a pool in the complex. Reservations on Booking.com and Airbnb.',
+      'Mandarina is a 44 m² apartment for four above Petrovac, with a sea view, pool, free Wi-Fi and private parking. Book on Booking.com or Airbnb.',
     ogAlt: 'The terrace of the Mandarina apartment, looking over the rooftops of Petrovac to the Adriatic Sea',
   },
   anchors: {
@@ -35,17 +35,26 @@ export const en: Translations = {
   },
   hero: {
     place: 'Petrovac, Montenegro',
-    title: 'Wake up to',
-    titleAccent: 'the Adriatic.',
-    text: 'Welcome to Mandarina. A bright apartment above Petrovac, with a terrace facing the sea and a pool in the complex.',
+    title: 'Your morning',
+    titleAccent: 'above Petrovac.',
+    text: 'A bright apartment with a terrace facing the Adriatic, a separate bedroom and a pool in the complex.',
     ctaPrimary: 'Check available dates',
     ctaSecondary: 'See the gallery',
     caption: 'The view from the apartment’s terrace',
   },
+  facts: {
+    heading: 'At a glance',
+    guests: 'Up to 4 guests',
+    bedroom: '1 bedroom',
+    bathroom: '1 bathroom',
+    size: '44 m²',
+    wifi: 'Free Wi-Fi',
+    parking: 'Private parking',
+  },
   intro: {
     title: 'Open the terrace doors.',
     body: [
-      'Mandarina is a contemporary apartment in a residential complex above Petrovac. The living room opens onto the terrace, the bedroom looks towards the sea, and the kitchen is equipped for cooking.',
+      'Mandarina is a 44 m² apartment for up to four guests. It has a separate bedroom with a king bed, a living room with a sofa bed, one bathroom and a fully equipped kitchen.',
       'Have breakfast at the counter or take your coffee out to the terrace. You can see the sea from the bedroom, too.',
     ],
     detailsHeading: 'What you will find',
@@ -65,12 +74,11 @@ export const en: Translations = {
   pool: {
     title: 'A pool facing the sea.',
     body: 'A few steps from the apartment, the complex pool looks out to the open sea. Mornings start with a swim; afternoons pass on a lounger between the olive trees and the pebbles.',
-    points: ['Open sea view', 'Part of the complex', 'Olive trees and Mediterranean planting', 'A few steps from the apartment'],
+    points: ['Open sea view', 'Seasonal outdoor pool', 'Olive trees and Mediterranean planting', 'A few steps from the apartment'],
   },
   gallery: {
-    title: 'A closer look at Mandarina.',
-    body: 'The apartment, terrace and pool. Tap a photograph for a closer look.',
-    showAll: 'Show all photographs',
+    title: 'Take a look inside.',
+    body: 'A living room opening onto the terrace, a separate bedroom and a kitchen in the colours of the sea. Tap a photograph for a closer look.',
     lightbox: {
       dialogLabel: 'Photo gallery',
       close: 'Close',
@@ -88,20 +96,52 @@ export const en: Translations = {
     ],
     practicalHeading: 'For orientation',
     practical: [
-      'The beach and seafront promenade in Petrovac',
-      'Restaurants, cafés and shops in the town centre',
-      'Nearest airports: Tivat and Podgorica',
+      'The beach and promenade are approximately 750 m away',
+      'The nearest supermarket is approximately 450 m away',
+      'Third floor, lift access and free private parking',
+      'Check-in 14:00–22:00 · check-out 08:00–11:00',
     ],
-    mapCta: 'Open Petrovac on the map',
+    mapCta: 'Open the location on the map',
+    address: 'Olive Residence · Apartment A14 · 3rd floor',
+  },
+  reviews: {
+    eyebrow: 'Guest impressions',
+    title: 'A stay worth remembering.',
+    scoreLabel: 'Exceptional',
+    countLabel: 'reviews on Booking.com',
+    verifiedLabel: 'Score checked on 7 September 2026.',
+    translatedLabel: 'Translated from the original',
+    sourceCta: 'Read all reviews',
+    items: [
+      {
+        quote: 'We loved the staff, the view, and the clean, comfortable rooms.',
+        name: 'Konieczny',
+        country: 'Poland',
+      },
+      {
+        quote: 'Everything is new, very clean and thoughtfully maintained. You feel at home.',
+        name: 'Elena',
+        country: 'Spain',
+      },
+      {
+        quote: 'The residence is beautiful, the facilities excellent, and the sea view incredible.',
+        name: 'Guillaume',
+        country: 'Belgium',
+      },
+    ],
   },
   booking: {
+    eyebrow: 'Secure booking',
     title: 'See you in Petrovac.',
     body: 'Check availability and prices on Booking.com or Airbnb. Book through whichever platform you prefer.',
+    platformNote: 'Availability, prices and payment are shown on your chosen platform.',
+    practicalHeading: 'Good to know',
+    practical: ['Children of all ages are welcome', 'The apartment is non-smoking', 'Pets are not allowed', 'No parties · quiet hours from 22:00 to 07:00'],
     bookingCta: 'View on Booking.com',
     airbnbCta: 'View on Airbnb',
     instagramLead: 'Photographs and news:',
   },
-  bookingBar: { label: 'Mandarina · Petrovac', cta: 'Booking.com' },
+  bookingBar: { label: 'Check available dates', cta: 'Booking.com' },
   footer: {
     tagline: 'Apartment in Petrovac, Montenegro',
     instagram: 'Instagram',

@@ -1,5 +1,5 @@
 /**
- * Gallery: "show all" expansion and an accessible lightbox built on <dialog>.
+ * Accessible gallery lightbox built on <dialog>.
  * Keyboard: Escape closes, arrows navigate, Tab is trapped inside the dialog.
  * Touch: horizontal swipe navigates. Focus returns to the opening thumbnail.
  */
@@ -11,17 +11,6 @@ interface LightboxItem {
   height: number;
   alt: string;
   caption: string;
-}
-
-const grid = document.querySelector<HTMLElement>('[data-gallery]');
-const moreButton = document.querySelector<HTMLButtonElement>('[data-gallery-more]');
-
-if (grid && moreButton) {
-  moreButton.addEventListener('click', () => {
-    grid.classList.add('is-expanded');
-    moreButton.hidden = true;
-    grid.querySelector<HTMLAnchorElement>('[data-gallery-extra] a')?.focus();
-  });
 }
 
 const dialog = document.getElementById('lightbox') as HTMLDialogElement | null;

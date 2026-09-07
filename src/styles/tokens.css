@@ -34,7 +34,7 @@
 
   /* Rhythm */
   --gutter: clamp(1.25rem, 4vw, 3rem);
-  --section: clamp(4rem, 2.5rem + 5.5vw, 7.5rem);
+  --section: clamp(3.5rem, 2.5rem + 3.5vw, 6rem);
   --container: 80rem;
   --container-wide: 90rem;
   --measure: 60ch;

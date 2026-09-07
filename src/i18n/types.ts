@@ -45,6 +45,15 @@ export interface Translations {
     ctaSecondary: string;
     caption: string;
   };
+  facts: {
+    heading: string;
+    guests: string;
+    bedroom: string;
+    bathroom: string;
+    size: string;
+    wifi: string;
+    parking: string;
+  };
   intro: {
     title: string;
     body: string[];
@@ -56,7 +65,6 @@ export interface Translations {
   gallery: {
     title: string;
     body: string;
-    showAll: string;
     lightbox: { dialogLabel: string; close: string; prev: string; next: string; of: string; open: string };
   };
   location: {
@@ -65,10 +73,25 @@ export interface Translations {
     practicalHeading: string;
     practical: string[];
     mapCta: string;
+    address: string;
+  };
+  reviews: {
+    eyebrow: string;
+    title: string;
+    scoreLabel: string;
+    countLabel: string;
+    verifiedLabel: string;
+    translatedLabel: string;
+    sourceCta: string;
+    items: { quote: string; name: string; country: string }[];
   };
   booking: {
+    eyebrow: string;
     title: string;
     body: string;
+    platformNote: string;
+    practicalHeading: string;
+    practical: string[];
     bookingCta: string;
     airbnbCta: string;
     instagramLead: string;

@@ -9,7 +9,7 @@ export const me: Translations = {
   meta: {
     title: 'Mandarina · Apartman u Petrovcu s pogledom na more',
     description:
-      'Mandarina je svijetli apartman iznad Petrovca, Crna Gora: terasa okrenuta ka Jadranu, spavaća soba s pogledom na more i bazen u sklopu kompleksa. Rezervacije preko Booking.com-a i Airbnb-a.',
+      'Mandarina je apartman od 44 m² za četiri gosta iznad Petrovca: pogled na more, bazen, besplatan Wi-Fi i privatni parking. Rezervacije preko Booking.com-a i Airbnb-a.',
     ogAlt: 'Terasa apartmana Mandarina s pogledom preko krovova Petrovca na Jadransko more',
   },
   anchors: {
@@ -35,17 +35,26 @@ export const me: Translations = {
   },
   hero: {
     place: 'Petrovac, Crna Gora',
-    title: 'Jutra s pogledom',
-    titleAccent: 'na more.',
-    text: 'Dobro došli u Mandarinu. Svijetli apartman iznad Petrovca, s terasom prema Jadranu i bazenom u sklopu kompleksa.',
+    title: 'Vaše jutro',
+    titleAccent: 'iznad Petrovca.',
+    text: 'Svijetli apartman s terasom prema Jadranu, zasebnom spavaćom sobom i bazenom u sklopu kompleksa.',
     ctaPrimary: 'Provjerite slobodne termine',
     ctaSecondary: 'Pogledajte galeriju',
     caption: 'Pogled s terase apartmana',
   },
+  facts: {
+    heading: 'Ukratko',
+    guests: 'Do 4 gosta',
+    bedroom: '1 spavaća soba',
+    bathroom: '1 kupatilo',
+    size: '44 m²',
+    wifi: 'Besplatan Wi-Fi',
+    parking: 'Privatni parking',
+  },
   intro: {
     title: 'Otvorite vrata terase.',
     body: [
-      'Mandarina je savremeni apartman u stambenom kompleksu iznad Petrovca. Dnevni boravak se otvara na terasu, spavaća soba gleda prema moru, a kuhinja je opremljena za pripremu obroka.',
+      'Mandarina je apartman od 44 m² za najviše četiri gosta. Ima zasebnu spavaću sobu s velikim bračnim krevetom, dnevni boravak sa sofom na razvlačenje, jedno kupatilo i potpuno opremljenu kuhinju.',
       'Za doručak možete sjesti za šank ili ponijeti kafu na terasu. More se vidi i iz spavaće sobe.',
     ],
     detailsHeading: 'Ono što vas čeka',
@@ -65,12 +74,11 @@ export const me: Translations = {
   pool: {
     title: 'Bazen s pogledom na more.',
     body: 'Nekoliko koraka od apartmana je bazen kompleksa, okrenut prema pučini. Jutro počinje plivanjem, a popodne se provodi na ležaljci između maslina i šljunka.',
-    points: ['Pogled na otvoreno more', 'U sklopu kompleksa', 'Masline i sredozemno zelenilo', 'Nekoliko koraka od apartmana'],
+    points: ['Pogled na otvoreno more', 'Sezonski otvoreni bazen', 'Masline i sredozemno zelenilo', 'Nekoliko koraka od apartmana'],
   },
   gallery: {
-    title: 'Mandarina, iz svakog ugla.',
-    body: 'Apartman, terasa i bazen. Dodirnite fotografiju za veći prikaz.',
-    showAll: 'Prikaži sve fotografije',
+    title: 'Zavirite unutra.',
+    body: 'Dnevni boravak otvoren prema terasi, zasebna spavaća soba i kuhinja u boji mora. Dodirnite fotografiju za veći prikaz.',
     lightbox: {
       dialogLabel: 'Galerija fotografija',
       close: 'Zatvori',
@@ -88,20 +96,52 @@ export const me: Translations = {
     ],
     practicalHeading: 'Za orijentaciju',
     practical: [
-      'Plaža i šetalište uz more u Petrovcu',
-      'Restorani, kafići i prodavnice u centru mjesta',
-      'Najbliži aerodromi: Tivat i Podgorica',
+      'Plaža i šetalište približno 750 m od apartmana',
+      'Najbliža prodavnica približno 450 m',
+      'Treći sprat, pristup liftom i besplatan privatni parking',
+      'Prijava 14:00–22:00 · odjava 08:00–11:00',
     ],
-    mapCta: 'Otvorite Petrovac na mapi',
+    mapCta: 'Otvorite lokaciju na mapi',
+    address: 'Olive Residence · Apartman A14 · 3. sprat',
+  },
+  reviews: {
+    eyebrow: 'Utisci gostiju',
+    title: 'Boravak koji se pamti.',
+    scoreLabel: 'Izuzetno',
+    countLabel: 'recenzija na Booking.com-u',
+    verifiedLabel: 'Ocjena provjerena 7. septembra 2026.',
+    translatedLabel: 'Prevedeno s originala',
+    sourceCta: 'Pročitajte sve recenzije',
+    items: [
+      {
+        quote: 'Osoblje, pogled i čiste, udobne sobe — sve nam se dopalo.',
+        name: 'Konieczny',
+        country: 'Poljska',
+      },
+      {
+        quote: 'Sve je novo, veoma čisto i pažljivo održavano. Osjećate se kao kod kuće.',
+        name: 'Elena',
+        country: 'Španija',
+      },
+      {
+        quote: 'Rezidencija je prelijepa, oprema odličnog kvaliteta, a pogled na more nevjerovatan.',
+        name: 'Guillaume',
+        country: 'Belgija',
+      },
+    ],
   },
   booking: {
+    eyebrow: 'Sigurna rezervacija',
     title: 'Vidimo se u Petrovcu.',
     body: 'Slobodne termine i cijene možete provjeriti na Booking.com-u ili Airbnb-u. Rezervišite preko platforme koja vam više odgovara.',
+    platformNote: 'Dostupnost, cijene i plaćanje prikazuju se na izabranoj platformi.',
+    practicalHeading: 'Dobro je znati',
+    practical: ['Djeca svih uzrasta su dobrodošla', 'Apartman je za nepušače', 'Kućni ljubimci nijesu dozvoljeni', 'Zabave nijesu dozvoljene · mir od 22:00 do 07:00'],
     bookingCta: 'Pogledajte na Booking.com',
     airbnbCta: 'Pogledajte na Airbnb-u',
     instagramLead: 'Fotografije i novosti:',
   },
-  bookingBar: { label: 'Mandarina · Petrovac', cta: 'Booking.com' },
+  bookingBar: { label: 'Provjerite termine', cta: 'Booking.com' },
   footer: {
     tagline: 'Apartman u Petrovcu, Crna Gora',
     instagram: 'Instagram',

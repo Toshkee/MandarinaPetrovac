@@ -12,13 +12,12 @@ to update.
 - [ ] **Pool access.** The Instagram bio calls the pool private; a caption says it is in the
       complex. The site says only "pool in the complex" and never "private". If access is
       exclusive to this apartment, the wording can change. → `pool` texts in `src/i18n/*.ts`.
-- [ ] **Guest capacity, bedrooms, bathrooms, size.** Not published. The photos show one bedroom
-      with a double bed and a living-room sofa; whether the sofa is a sofa bed is unknown.
-      → add to `intro.details` in `src/i18n/*.ts` once confirmed.
-- [ ] **Distances and times.** "750 m from the beach" is an owner-published claim that has not been
-      re-measured. No distance or walking time is shown. → `location.practical` in `src/i18n/*.ts`.
-- [ ] **Exact map location.** The map link currently opens Petrovac as a town. Replace with the
-      apartment pin (Google Maps share link) once you are happy to publish it.
+- [x] **Guest capacity, bedrooms, bathrooms, size.** Public Booking.com listing confirms 4 guests,
+      1 bedroom, 1 bathroom, 44 m², one king bed and one sofa bed (verified 2026-09-07).
+- [x] **Published distances.** Booking.com property description states 750 m to the beach and
+      450 m to the nearest supermarket. These are published as approximate, not walking times.
+- [ ] **Exact map pin.** The map link searches for Olive Residence in Petrovac. Replace it with the
+      apartment's exact Google Maps share link once you are happy to publish it.
       → `property.links.map`.
 - [x] **Production domain.** `mandarinapt.me` (Namecheap), configured in `astro.config.mjs`.
       Remaining step is in the Cloudflare dashboard: point the Namecheap nameservers at Cloudflare
@@ -28,8 +27,8 @@ to update.
 
 - [x] **Airbnb listing URL.** Owner supplied `airbnb.com/rooms/1678841843244205215`; added without dates or tracking parameters to `property.links.airbnb`.
 - [ ] **Contact e-mail and phone.** → `property.contact` (shows a Contact block in the footer).
-- [ ] **Wi-Fi, parking, check-in times, house rules.** Not visible in the photos, so not listed.
-      → `intro.details` in `src/i18n/*.ts`.
+- [x] **Wi-Fi, parking, check-in times and house rules.** Added from the public Booking.com
+      listing and verified 2026-09-07.
 - [ ] **Hero video.** A clean 6–12 s silent clip of the terrace, sea view or pool.
       → `property.heroVideo`, file in `public/video/`.
 - [ ] **Full-resolution originals** of the interior photos (the supplied files are 1448×1086 px)

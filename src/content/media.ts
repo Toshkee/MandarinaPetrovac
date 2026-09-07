@@ -19,6 +19,7 @@ import bedroomWardrobeHall from '../assets/photos/bedroom-wardrobe-hall.jpg';
 import buildingPoolOlive from '../assets/photos/building-pool-olive.jpg';
 import poolSeaView from '../assets/photos/pool-sea-view.jpg';
 import petrovacDusk from '../assets/photos/petrovac-dusk.jpg';
+import heroBalconyView from '../assets/photos/hero-balcony-view.png';
 
 export type Placement = 'hero' | 'intro' | 'interiors' | 'pool' | 'gallery' | 'social';
 
@@ -43,9 +44,22 @@ export type MediaId =
   | 'bedroomWardrobeHall'
   | 'buildingPoolOlive'
   | 'poolSeaView'
-  | 'petrovacDusk';
+  | 'petrovacDusk'
+  | 'heroBalconyView';
 
 export const media: Record<MediaId, MediaItem> = {
+  heroBalconyView: {
+    id: 'heroBalconyView',
+    file: 'hero-balcony-view.png',
+    src: heroBalconyView,
+    alt: {
+      me: 'Pogled sa terase apartmana preko staklene ograde i krovova Petrovca prema Jadranskom moru pod plavim nebom',
+      en: 'View from the apartment terrace across the glass railing and Petrovac rooftops towards the Adriatic under a blue sky',
+    },
+    caption: { me: 'Pogled sa terase prema Petrovcu i moru', en: 'The view from the terrace over Petrovac and the sea' },
+    placement: ['hero'],
+    focal: { x: 54, y: 48 },
+  },
   terraceViewDay: {
     id: 'terraceViewDay',
     file: 'terrace-view-day.jpg',
@@ -173,19 +187,11 @@ export const media: Record<MediaId, MediaItem> = {
 
 /** Gallery order: alternate interior, terrace, view and pool so the grid has rhythm. */
 export const galleryOrder: MediaId[] = [
-  'terraceViewDay',
   'livingRoomBalcony',
-  'poolSeaView',
   'bedroomSeaView',
-  'petrovacDusk',
   'kitchenBlue',
-  'buildingPoolOlive',
-  'livingRoomFromHall',
   'bedroomWardrobeHall',
 ];
-
-/** Number of gallery photographs shown before "show all". */
-export const galleryInitialCount = 6;
 
 export function mediaList(): MediaItem[] {
   return Object.values(media);

@@ -13,7 +13,10 @@ const { href, label, onDark = false } = Astro.props;
 
 <a class:list={['wordmark', { 'wordmark--on-dark': onDark }]} href={href} aria-label={label}>
   <CitrusMark size={22} class="wordmark__mark" />
-  <span class="wordmark__text">{property.wordmark}</span>
+  <span class="wordmark__lockup">
+    <span class="wordmark__text">{property.wordmark}</span>
+    <span class="wordmark__sub">Sunset Apartment</span>
+  </span>
 </a>
 
 <style>
@@ -25,7 +28,6 @@ const { href, label, onDark = false } = Astro.props;
     text-decoration: none;
     color: var(--c-ink);
     font-family: var(--font-serif);
-    font-size: 1.5rem;
     letter-spacing: 0.005em;
     line-height: 1;
   }
@@ -43,6 +45,18 @@ const { href, label, onDark = false } = Astro.props;
   }
 
   .wordmark__text {
-    padding-top: 0.1em;
+    display: block;
+    font-size: 1.45rem;
+  }
+
+  .wordmark__sub {
+    display: block;
+    margin-top: 0.22rem;
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.68;
   }
 </style>

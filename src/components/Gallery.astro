@@ -1,7 +1,7 @@
 ---
 import { Picture, getImage } from 'astro:assets';
 import SectionHead from './SectionHead.astro';
-import { media, galleryOrder, galleryInitialCount } from '../content/media';
+import { media, galleryOrder } from '../content/media';
 import { t, type Locale } from '../i18n';
 
 interface Props {
@@ -42,10 +42,7 @@ const items = await Promise.all(
     <ul class="gallery__grid" data-gallery>
       {
         items.map(({ item, large }, index) => (
-          <li
-            class="gallery__cell"
-            data-gallery-extra={index >= galleryInitialCount ? '' : undefined}
-          >
+          <li class:list={['gallery__cell', `gallery__cell--${index + 1}`]}>
             <a
               class="gallery__item"
               href={large.src}
@@ -63,33 +60,27 @@ const items = await Promise.all(
                   alt=""
                   formats={['avif', 'webp']}
                   widths={[320, 480, 640, 900]}
-                  sizes="(min-width: 64em) 30vw, (min-width: 48em) 33vw, 50vw"
+                  sizes="(min-width: 80rem) 39rem, (min-width: 48em) 50vw, 100vw"
                   layout="full-width"
                   loading="lazy"
                 />
               </span>
               <span class="gallery__caption">{item.caption[locale]}</span>
-              <span class="gallery__open" aria-hidden="true">↗</span>
             </a>
           </li>
         ))
       }
     </ul>
 
-    <div class="gallery__more-wrap">
-      <button class="btn btn--ghost" type="button" data-gallery-more>
-        {tr.gallery.showAll}
-      </button>
-    </div>
   </div>
 </section>
 
 <style>
   .gallery__grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
-    margin-top: 2.5rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
   }
 
   .gallery__item {
@@ -113,20 +104,6 @@ const items = await Promise.all(
     transform: scale(1.025);
   }
 
-  html.js .gallery__grid:not(.is-expanded) [data-gallery-extra] {
-    display: none;
-  }
-
-  html:not(.js) .gallery__more-wrap {
-    display: none;
-  }
-
-  .gallery__more-wrap {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-  }
-
   .gallery__caption {
     display: block;
     padding: 0.75rem 2rem 0.75rem 0;
@@ -134,34 +111,14 @@ const items = await Promise.all(
     line-height: 1.4;
   }
 
-  .gallery__open {
-    position: absolute;
-    right: 0.75rem;
-    top: 0.75rem;
-    display: grid;
-    place-items: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background: var(--c-paper);
-    color: var(--c-ink);
-    transition: transform var(--dur) var(--ease);
-  }
-
-  .gallery__item:hover .gallery__open {
-    transform: rotate(45deg);
-  }
-
-
   @media (min-width: 48em) {
     .gallery__grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .gallery__open,
     .gallery__item :global(img) {
       transition: none;
     }

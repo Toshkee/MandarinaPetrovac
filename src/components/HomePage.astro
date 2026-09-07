@@ -1,12 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from './Hero.astro';
+import FactsStrip from './FactsStrip.astro';
 import Intro from './Intro.astro';
-import Interiors from './Interiors.astro';
 import Pool from './Pool.astro';
 import Gallery from './Gallery.astro';
 import Lightbox from './Lightbox.astro';
 import Location from './Location.astro';
+import Reviews from './Reviews.astro';
 import BookingInvite from './BookingInvite.astro';
 import { property, confirmedAmenities } from '../config/property';
 import { t, localePath, type Locale } from '../i18n';
@@ -28,7 +29,9 @@ const structuredData = {
   inLanguage: tr.langTag,
   address: {
     '@type': 'PostalAddress',
+    streetAddress: property.location.streetAddress,
     addressLocality: property.location.town,
+    postalCode: property.location.postalCode,
     addressCountry: property.location.countryCode,
   },
   sameAs: [
@@ -41,16 +44,34 @@ const structuredData = {
     name: amenity[locale],
     value: true,
   })),
+  numberOfRooms: property.details.bedrooms,
+  occupancy: {
+    '@type': 'QuantitativeValue',
+    maxValue: property.details.guests,
+  },
+  floorSize: {
+    '@type': 'QuantitativeValue',
+    value: property.details.sizeSquareMeters,
+    unitCode: 'MTK',
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: property.reviews.bookingScore,
+    reviewCount: property.reviews.count,
+    bestRating: 10,
+    worstRating: 1,
+  },
 };
 ---
 
 <Base locale={locale} path={localePath[locale]} structuredData={structuredData}>
   <Hero locale={locale} />
+  <FactsStrip locale={locale} />
   <Intro locale={locale} />
   <Pool locale={locale} />
-  <Interiors locale={locale} />
   <Gallery locale={locale} />
   <Location locale={locale} />
+  <Reviews locale={locale} />
   <BookingInvite locale={locale} />
   <Lightbox locale={locale} />
 </Base>
