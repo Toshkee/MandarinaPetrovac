@@ -18,7 +18,6 @@ export interface Translations {
   anchors: {
     apartment: string;
     interiors: string;
-    terrace: string;
     pool: string;
     gallery: string;
     location: string;
@@ -26,6 +25,7 @@ export interface Translations {
   };
   nav: {
     apartment: string;
+    pool: string;
     gallery: string;
     location: string;
     booking: string;
@@ -52,8 +52,7 @@ export interface Translations {
     details: string[];
   };
   interiors: { title: string; body: string };
-  terrace: { title: string; body: string };
-  pool: { title: string; body: string };
+  pool: { title: string; body: string; points: string[] };
   gallery: {
     title: string;
     body: string;

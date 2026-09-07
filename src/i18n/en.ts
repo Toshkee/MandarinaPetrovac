@@ -15,7 +15,6 @@ export const en: Translations = {
   anchors: {
     apartment: 'apartment',
     interiors: 'interiors',
-    terrace: 'terrace',
     pool: 'pool',
     gallery: 'gallery',
     location: 'location',
@@ -23,6 +22,7 @@ export const en: Translations = {
   },
   nav: {
     apartment: 'Apartment',
+    pool: 'Pool',
     gallery: 'Gallery',
     location: 'Location',
     booking: 'View on Booking.com',
@@ -62,13 +62,10 @@ export const en: Translations = {
     title: 'Take a look inside.',
     body: 'A living room opening onto the terrace, a separate bedroom and a kitchen in the colours of the sea.',
   },
-  terrace: {
-    title: 'Stay out a little longer.',
-    body: 'From the terrace, the view runs over the rooftops of Petrovac to the open sea. Two armchairs and a table are set for morning coffee; in the evening you watch the light change over the Adriatic.',
-  },
   pool: {
-    title: 'Between trips to the beach.',
-    body: 'The pool is part of the complex the apartment belongs to and faces the sea. Around it are olive trees, pebbles and Mediterranean planting.',
+    title: 'A pool facing the sea.',
+    body: 'A few steps from the apartment, the complex pool looks out to the open sea. Mornings start with a swim; afternoons pass on a lounger between the olive trees and the pebbles.',
+    points: ['Open sea view', 'Part of the complex', 'Olive trees and Mediterranean planting', 'A few steps from the apartment'],
   },
   gallery: {
     title: 'A closer look at Mandarina.',

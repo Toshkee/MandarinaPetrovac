@@ -224,6 +224,18 @@ figcaption,
   color: var(--c-ink);
 }
 
+.btn--outline-light {
+  background: transparent;
+  color: var(--c-paper);
+  border-color: color-mix(in srgb, var(--c-paper) 60%, transparent);
+}
+
+.btn--outline-light:hover {
+  background: color-mix(in srgb, var(--c-paper) 12%, transparent);
+  border-color: var(--c-paper);
+  color: var(--c-paper);
+}
+
 .btn--small {
   min-height: 2.75rem;
   padding: 0.5rem 1.1rem;

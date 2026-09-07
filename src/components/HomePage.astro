@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import Hero from './Hero.astro';
 import Intro from './Intro.astro';
 import Interiors from './Interiors.astro';
-import TerraceView from './TerraceView.astro';
 import Pool from './Pool.astro';
 import Gallery from './Gallery.astro';
 import Lightbox from './Lightbox.astro';
@@ -48,9 +47,8 @@ const structuredData = {
 <Base locale={locale} path={localePath[locale]} structuredData={structuredData}>
   <Hero locale={locale} />
   <Intro locale={locale} />
-  <Interiors locale={locale} />
-  <TerraceView locale={locale} />
   <Pool locale={locale} />
+  <Interiors locale={locale} />
   <Gallery locale={locale} />
   <Location locale={locale} />
   <BookingInvite locale={locale} />

@@ -18,16 +18,19 @@ const building = media.buildingPoolOlive;
     <div class="pool__text" data-reveal>
       <SectionHead title={tr.pool.title} id="pool-title" />
       <p class="pool__body">{tr.pool.body}</p>
+      <ul class="pool__points">
+        {tr.pool.points.map((point) => <li>{point}</li>)}
+      </ul>
     </div>
 
     <figure class="pool__figure pool__figure--pool" data-reveal>
-      <div class="frame frame--4x5" style={`--focal: ${pool.focal.x}% ${pool.focal.y}%`}>
+      <div class="frame pool__frame" style={`--focal: ${pool.focal.x}% ${pool.focal.y}%`}>
         <Picture
           src={pool.src}
           alt={pool.alt[locale]}
           formats={['avif', 'webp']}
-          widths={[480, 720, 960, 1320]}
-          sizes="(min-width: 64em) 36vw, 100vw"
+          widths={[480, 720, 960, 1320, 1620, 1980]}
+          sizes="(min-width: 64em) 56vw, 100vw"
           layout="full-width"
           loading="lazy"
         />
@@ -36,13 +39,13 @@ const building = media.buildingPoolOlive;
     </figure>
 
     <figure class="pool__figure pool__figure--building" data-reveal>
-      <div class="frame frame--4x5" style={`--focal: ${building.focal.x}% ${building.focal.y}%`}>
+      <div class="frame frame--4x3" style={`--focal: ${building.focal.x}% ${building.focal.y}%`}>
         <Picture
           src={building.src}
           alt={building.alt[locale]}
           formats={['avif', 'webp']}
           widths={[480, 720, 1024]}
-          sizes="(min-width: 64em) 28vw, 100vw"
+          sizes="(min-width: 64em) 34vw, 100vw"
           layout="full-width"
           loading="lazy"
         />
@@ -53,6 +56,13 @@ const building = media.buildingPoolOlive;
 </section>
 
 <style>
+  /* The pool is the showpiece: a deep sea-blue band with the pool photograph bleeding to the edge. */
+  .pool {
+    background: var(--c-adriatic);
+    color: var(--c-paper);
+    overflow: hidden;
+  }
+
   .pool__grid {
     display: grid;
     gap: 2rem;
@@ -61,12 +71,42 @@ const building = media.buildingPoolOlive;
   .pool__body {
     margin-top: 1.5rem;
     font-size: var(--text-lg);
+    line-height: 1.5;
+    color: var(--c-ink-on-dark);
     max-width: 40ch;
+  }
+
+  .pool__points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.75rem;
+  }
+
+  .pool__points li {
+    padding: 0.5rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--c-paper) 35%, transparent);
+    font-size: var(--text-sm);
+    color: var(--c-paper);
+  }
+
+  .pool__frame {
+    aspect-ratio: 4 / 5;
+    background: color-mix(in srgb, var(--c-adriatic) 70%, black);
+  }
+
+  .pool figcaption {
+    color: color-mix(in srgb, var(--c-paper) 78%, transparent);
+  }
+
+  .pool :focus-visible {
+    outline-color: var(--c-paper);
   }
 
   @media (min-width: 48em) {
     .pool__grid {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       column-gap: 1.5rem;
     }
 
@@ -78,24 +118,45 @@ const building = media.buildingPoolOlive;
   @media (min-width: 64em) {
     .pool__grid {
       grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: 1.5rem;
+      grid-template-rows: auto auto;
+      column-gap: clamp(1.5rem, 3vw, 3rem);
+      row-gap: 2.5rem;
       align-items: start;
     }
 
-    .pool__text {
-      grid-column: 1 / 5;
-      padding-right: 1.5rem;
-      position: sticky;
-      top: calc(var(--header-h) + 1.5rem);
+    .pool__figure--pool {
+      --bleed: max(var(--gutter), (100vw - var(--container)) / 2);
+      grid-column: 1 / 8;
+      grid-row: 1 / 3;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      /* Bleed to the left edge of the viewport, keep the right corners rounded. */
+      margin-left: calc(-1 * var(--bleed));
     }
 
-    .pool__figure--pool {
-      grid-column: 5 / 10;
+    .pool__figure--pool .frame {
+      flex: 1;
+      aspect-ratio: auto;
+      min-height: 36rem;
+      max-height: 52rem;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .pool__figure--pool figcaption {
+      margin-left: var(--bleed);
+    }
+
+    .pool__text {
+      grid-column: 8 / 13;
+      grid-row: 1;
+      padding-top: 1rem;
     }
 
     .pool__figure--building {
-      grid-column: 10 / 13;
-      margin-top: 6rem;
+      grid-column: 8 / 13;
+      grid-row: 2;
     }
   }
 </style>

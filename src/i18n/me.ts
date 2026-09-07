@@ -15,7 +15,6 @@ export const me: Translations = {
   anchors: {
     apartment: 'apartman',
     interiors: 'enterijer',
-    terrace: 'terasa',
     pool: 'bazen',
     gallery: 'galerija',
     location: 'lokacija',
@@ -23,6 +22,7 @@ export const me: Translations = {
   },
   nav: {
     apartment: 'Apartman',
+    pool: 'Bazen',
     gallery: 'Galerija',
     location: 'Lokacija',
     booking: 'Pogledajte na Booking.com',
@@ -62,13 +62,10 @@ export const me: Translations = {
     title: 'Zavirite unutra.',
     body: 'Dnevni boravak otvoren prema terasi, zasebna spavaća soba i kuhinja u boji mora.',
   },
-  terrace: {
-    title: 'Ostanite još malo na terasi.',
-    body: 'S terase se pogled pruža preko krovova Petrovca do otvorenog mora. Dvije naslonjače i sto su tu za jutarnju kafu, a uveče se gleda kako se svjetlo mijenja nad Jadranom.',
-  },
   pool: {
-    title: 'Između dva odlaska na plažu.',
-    body: 'Bazen se nalazi u sklopu kompleksa u kojem je apartman i okrenut je prema moru. Oko njega su masline, šljunak i sredozemno zelenilo.',
+    title: 'Bazen s pogledom na more.',
+    body: 'Nekoliko koraka od apartmana je bazen kompleksa, okrenut prema pučini. Jutro počinje plivanjem, a popodne se provodi na ležaljci između maslina i šljunka.',
+    points: ['Pogled na otvoreno more', 'U sklopu kompleksa', 'Masline i sredozemno zelenilo', 'Nekoliko koraka od apartmana'],
   },
   gallery: {
     title: 'Mandarina, iz svakog ugla.',

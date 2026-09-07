@@ -20,7 +20,7 @@ import buildingPoolOlive from '../assets/photos/building-pool-olive.jpg';
 import poolSeaView from '../assets/photos/pool-sea-view.jpg';
 import petrovacDusk from '../assets/photos/petrovac-dusk.jpg';
 
-export type Placement = 'hero' | 'intro' | 'interiors' | 'terrace' | 'pool' | 'gallery' | 'social';
+export type Placement = 'hero' | 'intro' | 'interiors' | 'pool' | 'gallery' | 'social';
 
 export interface MediaItem {
   id: MediaId;
@@ -166,8 +166,8 @@ export const media: Record<MediaId, MediaItem> = {
       en: 'Petrovac at dusk: rooftops and buildings step down to the sea, with an orange glow above the horizon after sunset',
     },
     caption: { me: 'Petrovac u sumrak', en: 'Petrovac at dusk' },
-    placement: ['terrace', 'gallery'],
-    focal: { x: 45, y: 55 },
+    placement: ['hero', 'gallery'],
+    focal: { x: 50, y: 62 },
   },
 };
 
