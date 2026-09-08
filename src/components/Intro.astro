@@ -15,14 +15,14 @@ const focal = `${photo.focal.x}% ${photo.focal.y}%`;
 
 <section class="intro section" id={tr.anchors.apartment} aria-labelledby="intro-title">
   <div class="container intro__grid">
-    <div class="intro__text" data-reveal>
+    <div class="intro__text">
       <SectionHead title={tr.intro.title} id="intro-title" />
       <div class="intro__body prose">
         {tr.intro.body.map((paragraph) => <p>{paragraph}</p>)}
       </div>
     </div>
 
-    <figure class="intro__figure" data-reveal>
+    <figure class="intro__figure">
       <div class="frame frame--4x3" style={`--focal: ${focal}`}>
         <Picture
           src={photo.src}

@@ -31,15 +31,9 @@ const items = await Promise.all(
 
 <section class="gallery section" id={tr.anchors.gallery} aria-labelledby="gallery-title">
   <div class="container">
-    <div data-reveal>
-      <SectionHead
-        title={tr.gallery.title}
-        id="gallery-title"
-        lede={tr.gallery.body}
-      />
-    </div>
+    <SectionHead title={tr.gallery.title} id="gallery-title" lede={tr.gallery.body} />
 
-    <ul class="gallery__grid" data-gallery>
+    <ul class="gallery__grid" data-gallery data-reveal>
       {
         items.map(({ item, large }, index) => (
           <li class:list={['gallery__cell', `gallery__cell--${index + 1}`]}>
@@ -54,45 +48,52 @@ const items = await Promise.all(
               data-caption={item.caption[locale]}
               aria-label={`${tr.gallery.lightbox.open}: ${item.caption[locale]}`}
             >
-              <span class="frame frame--4x3" style={`--focal: ${item.focal.x}% ${item.focal.y}%`}>
+              <span class="frame" style={`--focal: ${item.focal.x}% ${item.focal.y}%`}>
                 <Picture
                   src={item.src}
                   alt=""
                   formats={['avif', 'webp']}
-                  widths={[320, 480, 640, 900]}
-                  sizes="(min-width: 80rem) 39rem, (min-width: 48em) 50vw, 100vw"
+                  widths={[320, 480, 640, 900, 1200]}
+                  sizes="(min-width: 80rem) 46rem, (min-width: 64em) 55vw, (min-width: 48em) 50vw, 100vw"
                   layout="full-width"
                   loading="lazy"
                 />
               </span>
-              <span class="gallery__caption">{item.caption[locale]}</span>
+              <span class="gallery__caption">
+                <span class="gallery__index" aria-hidden="true">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                {item.caption[locale]}
+              </span>
             </a>
           </li>
         ))
       }
     </ul>
-
   </div>
 </section>
 
 <style>
+  /*
+   * Not a repeating tile grid: the crops and the column spans differ per photograph,
+   * and two cells are dropped below their neighbour so the rows do not share a baseline.
+   */
   .gallery__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.5rem;
-    margin-top: 2rem;
+    gap: 1.75rem;
+    margin-top: 2.5rem;
   }
 
   .gallery__item {
     display: block;
     position: relative;
-    overflow: hidden;
-    border-radius: var(--radius);
     text-decoration: none;
   }
 
   .gallery__item .frame {
     display: block;
+    aspect-ratio: 3 / 2;
   }
 
   .gallery__item :global(img) {
@@ -105,16 +106,97 @@ const items = await Promise.all(
   }
 
   .gallery__caption {
-    display: block;
-    padding: 0.75rem 2rem 0.75rem 0;
+    display: flex;
+    gap: 0.65rem;
+    padding: 0.85rem 1.5rem 0 0;
     font-size: var(--text-sm);
     line-height: 1.4;
+    color: var(--c-ink-soft);
+  }
+
+  .gallery__index {
+    flex: none;
+    color: var(--c-tangerine);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Small screens keep one column but still alternate the crop. */
+  .gallery__cell--2 .frame,
+  .gallery__cell--5 .frame {
+    aspect-ratio: 4 / 5;
+  }
+
+  .gallery__cell--3 .frame {
+    aspect-ratio: 3 / 4;
   }
 
   @media (min-width: 48em) {
     .gallery__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.5rem;
+      gap: 1.75rem 1.5rem;
+    }
+
+    .gallery__cell--1 {
+      grid-column: 1 / -1;
+    }
+
+    .gallery__cell--3,
+    .gallery__cell--5 {
+      margin-top: 2.5rem;
+    }
+  }
+
+  @media (min-width: 64em) {
+    .gallery__grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: clamp(1.5rem, 2.5vw, 2.5rem);
+      row-gap: clamp(2rem, 4vw, 3.5rem);
+      align-items: start;
+    }
+
+    .gallery__cell--1 {
+      grid-column: 1 / 8;
+      margin-top: 0;
+    }
+
+    .gallery__cell--1 .frame {
+      aspect-ratio: 3 / 2;
+    }
+
+    .gallery__cell--2 {
+      grid-column: 8 / 13;
+    }
+
+    .gallery__cell--2 .frame {
+      aspect-ratio: 3 / 4;
+    }
+
+    .gallery__cell--3 {
+      grid-column: 1 / 6;
+      margin-top: 0;
+    }
+
+    .gallery__cell--3 .frame {
+      aspect-ratio: 4 / 5;
+    }
+
+    .gallery__cell--4 {
+      grid-column: 6 / 13;
+      margin-top: clamp(2rem, 5vw, 5rem);
+    }
+
+    .gallery__cell--4 .frame {
+      aspect-ratio: 3 / 2;
+    }
+
+    .gallery__cell--5 {
+      grid-column: 3 / 11;
+      margin-top: clamp(1rem, 3vw, 3rem);
+    }
+
+    /* 3:2 rather than a letterbox: the closing photograph is an upright room, not a view. */
+    .gallery__cell--5 .frame {
+      aspect-ratio: 3 / 2;
     }
   }
 

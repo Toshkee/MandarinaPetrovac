@@ -11,8 +11,8 @@ export interface Translations {
   langTag: string;
   ogLocale: string;
   langName: string;
-  /** Link to the same page in the other language. */
-  switchTo: { label: string; lang: string; href: string };
+  /** Two-letter label for the header language switch. */
+  langShort: string;
   meta: { title: string; description: string; ogAlt: string };
   /** In-page anchor ids, localized so URLs read naturally in each language. */
   anchors: {

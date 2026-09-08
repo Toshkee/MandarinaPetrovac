@@ -185,11 +185,15 @@ export const media: Record<MediaId, MediaItem> = {
   },
 };
 
-/** Gallery order: alternate interior, terrace, view and pool so the grid has rhythm. */
+/**
+ * Gallery order: the terrace opens, then the rooms. The mosaic gives each position a
+ * different crop and span, so changing this order changes which photograph runs wide.
+ */
 export const galleryOrder: MediaId[] = [
-  'livingRoomBalcony',
+  'terraceViewDay',
   'bedroomSeaView',
   'kitchenBlue',
+  'livingRoomBalcony',
   'bedroomWardrobeHall',
 ];
 

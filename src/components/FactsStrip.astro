@@ -14,29 +14,27 @@ const facts = [tr.facts.guests, tr.facts.bedroom, tr.facts.bathroom, tr.facts.si
   <div class="container container--wide facts__inner">
     <p class="facts__label" id="facts-title">{tr.facts.heading}</p>
     <ul class="facts__list">
-      {
-        facts.map((fact) => (
-          <li class="facts__item">
-            <span>{fact}</span>
-          </li>
-        ))
-      }
+      {facts.map((fact) => <li class="facts__item">{fact}</li>)}
     </ul>
   </div>
 </section>
 
 <style>
+  /* One running line under the hero rather than a six-cell table of rules. */
   .facts {
     background: var(--c-paper);
     border-bottom: 1px solid var(--c-line);
   }
 
   .facts__inner {
-    padding-block: 1.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem 1.5rem;
+    padding-block: 1.25rem;
   }
 
   .facts__label {
-    margin-bottom: 1rem;
     color: var(--c-burnt);
     font-size: var(--text-xs);
     font-weight: 500;
@@ -45,44 +43,17 @@ const facts = [tr.facts.guests, tr.facts.bedroom, tr.facts.bathroom, tr.facts.si
   }
 
   .facts__list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 1.25rem;
-  }
-
-  .facts__item {
-    min-width: 0;
-    padding-block: 0.7rem;
-    border-top: 1px solid var(--c-line);
-    color: var(--c-ink);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    row-gap: 0.35rem;
     font-size: var(--text-sm);
-    line-height: 1.3;
+    line-height: 1.4;
   }
 
-  @media (min-width: 48em) {
-    .facts__inner {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      align-items: center;
-      gap: 1.75rem;
-      padding-block: 1rem;
-    }
-
-    .facts__label {
-      margin: 0;
-      padding-right: 1.75rem;
-      border-right: 1px solid var(--c-line);
-      white-space: nowrap;
-    }
-
-    .facts__list {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 75em) {
-    .facts__list {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-    }
+  .facts__item:not(:last-child)::after {
+    content: '·';
+    margin-inline: 0.7rem;
+    color: var(--c-tangerine);
   }
 </style>

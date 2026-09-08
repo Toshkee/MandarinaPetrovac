@@ -13,7 +13,7 @@ const tr = t(locale);
 
 <section class="reviews section" aria-labelledby="reviews-title">
   <div class="container">
-    <div class="reviews__head" data-reveal>
+    <div class="reviews__head">
       <div>
         <SectionHead title={tr.reviews.title} id="reviews-title" />
       </div>
@@ -28,7 +28,10 @@ const tr = t(locale);
     <div class="reviews__grid">
       {
         tr.reviews.items.map((review) => (
-          <figure class="review" data-reveal>
+          <figure class="review">
+            <span class="review__mark" aria-hidden="true">
+              &ldquo;
+            </span>
             <blockquote>{review.quote}</blockquote>
             <figcaption>
               <strong>{review.name}</strong>
@@ -100,16 +103,22 @@ const tr = t(locale);
   }
 
   .review {
-    min-height: 12rem;
-    padding-top: 1.25rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    border-top: 1px solid var(--c-line);
+  }
+
+  .review__mark {
+    display: block;
+    font-family: var(--font-serif);
+    font-variation-settings: var(--display-axes);
+    font-size: 3.25rem;
+    line-height: 0.5;
+    color: var(--c-tangerine);
   }
 
   .review blockquote {
-    margin: 0;
+    flex: 1;
+    margin: 1.25rem 0 0;
     font-family: var(--font-serif);
     font-size: clamp(1.35rem, 1.15rem + 0.45vw, 1.7rem);
     line-height: 1.3;

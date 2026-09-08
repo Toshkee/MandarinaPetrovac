@@ -22,8 +22,15 @@
   --c-line-strong: rgba(48, 46, 40, 0.34);
 
   /* Type */
-  --font-serif: 'DM Serif Display', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
-  --font-sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Newsreader Variable', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter Tight Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /*
+   * Newsreader display cut. Its optical-size axis raises the contrast for headings while
+   * the figures stay conventional lining numerals - Fraunces was rejected here because its
+   * 4 splays into a wedge at display sizes.
+   */
+  --display-axes: 'opsz' 40;
+  --display-axes-text: 'opsz' 20;
   --text-xs: 0.8125rem;
   --text-sm: clamp(0.875rem, 0.85rem + 0.15vw, 0.9375rem);
   --text-base: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);

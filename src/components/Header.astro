@@ -1,5 +1,6 @@
 ---
 import Wordmark from './Wordmark.astro';
+import LangSwitch from './LangSwitch.astro';
 import { property } from '../config/property';
 import { t, localePath, type Locale } from '../i18n';
 
@@ -22,6 +23,7 @@ const links = [
     <Wordmark href={localePath[locale]} label={tr.nav.home} />
 
     <div class="site-header__quick">
+      <LangSwitch locale={locale} class="site-header__lang" />
       <a
         class="btn btn--primary btn--small site-header__book"
         href={property.links.booking}
@@ -57,15 +59,7 @@ const links = [
         }
       </ul>
       <div class="site-nav__aside">
-        <a
-          class="site-nav__lang"
-          href={tr.switchTo.href}
-          hreflang={tr.switchTo.lang}
-          lang={tr.switchTo.lang}
-          aria-label={`${tr.nav.langSwitch}: ${tr.switchTo.label}`}
-        >
-          {tr.switchTo.label}
-        </a>
+        <LangSwitch locale={locale} class="site-nav__lang" />
         <a
           class="btn btn--primary btn--small site-nav__book"
           href={property.links.booking}
@@ -109,6 +103,10 @@ const links = [
     align-items: center;
     gap: 0.5rem;
     flex: none;
+  }
+
+  .site-header__inner :global(.site-header__lang) {
+    margin-left: -0.5rem;
   }
 
   /* Below 40em the booking link lives in the hero, the menu panel and the bottom bar. */
@@ -228,21 +226,18 @@ const links = [
     padding-top: 1.25rem;
   }
 
-  .site-nav__lang {
-    display: inline-flex;
-    align-items: center;
-    min-height: 2.75rem;
-    font-weight: 500;
-    text-decoration: none;
-    border-bottom: 1px solid var(--c-line-strong);
+  /* Below 64em the switch lives next to the menu button, so the panel copy is not repeated. */
+  .site-header__inner :global(.site-nav__lang) {
+    display: none;
   }
 
   .site-nav__book {
     display: inline-flex;
   }
 
+  /* 40em-64em: the header already shows the booking button, so the panel foot has nothing left. */
   @media (min-width: 40em) and (max-width: 63.99em) {
-    .site-nav__book {
+    .site-nav__aside {
       display: none;
     }
   }
@@ -302,6 +297,11 @@ const links = [
     .site-nav__aside {
       padding: 0;
       gap: 1.5rem;
+    }
+
+    .site-header__inner :global(.site-nav__lang) {
+      display: inline-flex;
+      margin-right: -0.5rem;
     }
 
     .site-nav__book {

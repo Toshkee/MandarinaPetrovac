@@ -5,7 +5,7 @@ export const en: Translations = {
   langTag: 'en',
   ogLocale: 'en_GB',
   langName: 'English',
-  switchTo: { label: 'Crnogorski', lang: 'sr-Latn-ME', href: '/' },
+  langShort: 'EN',
   meta: {
     title: 'Mandarina · Sea-view apartment in Petrovac, Montenegro',
     description:
@@ -36,7 +36,7 @@ export const en: Translations = {
   hero: {
     place: 'Petrovac, Montenegro',
     title: 'Your morning',
-    titleAccent: 'above Petrovac.',
+    titleAccent: 'above Petrovac',
     text: 'A bright apartment with a terrace facing the Adriatic, a separate bedroom and a pool in the complex.',
     ctaPrimary: 'Check available dates',
     ctaSecondary: 'See the gallery',
@@ -52,7 +52,7 @@ export const en: Translations = {
     parking: 'Private parking',
   },
   intro: {
-    title: 'Open the terrace doors.',
+    title: 'Four guests, 44 m², one terrace',
     body: [
       'Mandarina is a 44 m² apartment for up to four guests. It has a separate bedroom with a king bed, a living room with a sofa bed, one bathroom and a fully equipped kitchen.',
       'Have breakfast at the counter or take your coffee out to the terrace. You can see the sea from the bedroom, too.',
@@ -72,13 +72,13 @@ export const en: Translations = {
     body: 'A living room opening onto the terrace, a separate bedroom and a kitchen in the colours of the sea.',
   },
   pool: {
-    title: 'A pool facing the sea.',
+    title: 'The pool, facing the open sea',
     body: 'A few steps from the apartment, the complex pool looks out to the open sea. Mornings start with a swim; afternoons pass on a lounger between the olive trees and the pebbles.',
     points: ['Open sea view', 'Seasonal outdoor pool', 'Olive trees and Mediterranean planting', 'A few steps from the apartment'],
   },
   gallery: {
-    title: 'Take a look inside.',
-    body: 'A living room opening onto the terrace, a separate bedroom and a kitchen in the colours of the sea. Tap a photograph for a closer look.',
+    title: 'Through the apartment, room by room',
+    body: 'Photographs taken in the apartment, nothing dressed up. Tap any of them for a closer look.',
     lightbox: {
       dialogLabel: 'Photo gallery',
       close: 'Close',
@@ -106,7 +106,7 @@ export const en: Translations = {
   },
   reviews: {
     eyebrow: 'Guest impressions',
-    title: 'A stay worth remembering.',
+    title: 'This is what guests wrote after their stay',
     scoreLabel: 'Exceptional',
     countLabel: 'reviews on Booking.com',
     verifiedLabel: 'Score checked on 7 September 2026.',

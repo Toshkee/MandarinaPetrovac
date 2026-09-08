@@ -15,7 +15,7 @@ const building = media.buildingPoolOlive;
 
 <section class="pool section" id={tr.anchors.pool} aria-labelledby="pool-title">
   <div class="container pool__grid">
-    <div class="pool__text" data-reveal>
+    <div class="pool__text">
       <SectionHead title={tr.pool.title} id="pool-title" />
       <p class="pool__body">{tr.pool.body}</p>
       <ul class="pool__points">
@@ -38,7 +38,7 @@ const building = media.buildingPoolOlive;
       <figcaption>{pool.caption[locale]}</figcaption>
     </figure>
 
-    <figure class="pool__figure pool__figure--building" data-reveal>
+    <figure class="pool__figure pool__figure--building">
       <div class="frame frame--4x3" style={`--focal: ${building.focal.x}% ${building.focal.y}%`}>
         <Picture
           src={building.src}

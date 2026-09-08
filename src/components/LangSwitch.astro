@@ -1,0 +1,94 @@
+---
+/**
+ * Both languages are always visible, so a visitor can see which one they are on
+ * and switch back. The active one is marked with aria-current, not only colour.
+ */
+import { t, localePath, locales, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  class?: string;
+  /** Light variant for use over dark surfaces. */
+  onDark?: boolean;
+}
+const { locale, class: className, onDark = false } = Astro.props;
+const tr = t(locale);
+---
+
+<div
+  class:list={['lang-switch', { 'lang-switch--on-dark': onDark }, className]}
+  role="group"
+  aria-label={tr.nav.langSwitch}
+>
+  {
+    locales.map((code) => {
+      const other = t(code);
+      return (
+        <a
+          class="lang-switch__option"
+          href={localePath[code]}
+          hreflang={other.langTag}
+          lang={other.langTag}
+          aria-current={code === locale ? 'page' : undefined}
+        >
+          <span aria-hidden="true">{other.langShort}</span>
+          <span class="sr-only">{other.langName}</span>
+        </a>
+      );
+    })
+  }
+</div>
+
+<style>
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .lang-switch__option {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    min-height: 2.75rem;
+    padding-inline: 0.5rem;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--c-ink-soft);
+    text-decoration: none;
+  }
+
+  .lang-switch__option + .lang-switch__option {
+    border-left: 1px solid var(--c-line);
+  }
+
+  .lang-switch__option:hover {
+    color: var(--c-ink);
+  }
+
+  .lang-switch__option[aria-current='page'] {
+    color: var(--c-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--c-burnt);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.4em;
+  }
+
+  .lang-switch--on-dark .lang-switch__option {
+    color: color-mix(in srgb, var(--c-ink-on-dark) 65%, transparent);
+  }
+
+  .lang-switch--on-dark .lang-switch__option + .lang-switch__option {
+    border-left-color: color-mix(in srgb, var(--c-ink-on-dark) 25%, transparent);
+  }
+
+  .lang-switch--on-dark .lang-switch__option:hover,
+  .lang-switch--on-dark .lang-switch__option[aria-current='page'] {
+    color: var(--c-ink-on-dark);
+  }
+
+  .lang-switch--on-dark .lang-switch__option[aria-current='page'] {
+    text-decoration-color: var(--c-tangerine-on-dark);
+  }
+</style>

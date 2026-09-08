@@ -15,11 +15,11 @@ const photo = media.petrovacDusk;
 
 <section class="location section section--sand" id={tr.anchors.location} aria-labelledby="location-title">
   <div class="container">
-    <div class="location__head" data-reveal>
+    <div class="location__head">
       <SectionHead title={tr.location.title} id="location-title" lede={tr.location.body[0]} />
     </div>
 
-    <figure class="location__figure" data-reveal>
+    <figure class="location__figure">
       <div class="frame frame--16x9" style={`--focal: ${photo.focal.x}% ${photo.focal.y}%`}>
         <Picture
           src={photo.src}
@@ -35,13 +35,13 @@ const photo = media.petrovacDusk;
     </figure>
 
     <div class="location__grid">
-      <div class="location__text" data-reveal>
+      <div class="location__text">
         <div class="location__body prose">
           <p>{tr.location.body[1]}</p>
         </div>
       </div>
 
-      <aside class="location__aside" data-reveal aria-labelledby="location-practical">
+      <aside class="location__aside" aria-labelledby="location-practical">
         <h3 id="location-practical" class="location__aside-title">{tr.location.practicalHeading}</h3>
         <p class="location__address">{tr.location.address}</p>
         <ul class="location__list">

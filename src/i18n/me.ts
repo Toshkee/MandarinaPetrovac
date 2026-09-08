@@ -5,7 +5,7 @@ export const me: Translations = {
   langTag: 'sr-Latn-ME',
   ogLocale: 'sr_ME',
   langName: 'Crnogorski',
-  switchTo: { label: 'English', lang: 'en', href: '/en/' },
+  langShort: 'CG',
   meta: {
     title: 'Mandarina · Apartman u Petrovcu s pogledom na more',
     description:
@@ -36,7 +36,7 @@ export const me: Translations = {
   hero: {
     place: 'Petrovac, Crna Gora',
     title: 'Vaše jutro',
-    titleAccent: 'iznad Petrovca.',
+    titleAccent: 'iznad Petrovca',
     text: 'Svijetli apartman s terasom prema Jadranu, zasebnom spavaćom sobom i bazenom u sklopu kompleksa.',
     ctaPrimary: 'Provjerite slobodne termine',
     ctaSecondary: 'Pogledajte galeriju',
@@ -52,7 +52,7 @@ export const me: Translations = {
     parking: 'Privatni parking',
   },
   intro: {
-    title: 'Otvorite vrata terase.',
+    title: 'Četiri gosta, 44 m², jedna terasa',
     body: [
       'Mandarina je apartman od 44 m² za najviše četiri gosta. Ima zasebnu spavaću sobu s velikim bračnim krevetom, dnevni boravak sa sofom na razvlačenje, jedno kupatilo i potpuno opremljenu kuhinju.',
       'Za doručak možete sjesti za šank ili ponijeti kafu na terasu. More se vidi i iz spavaće sobe.',
@@ -72,13 +72,13 @@ export const me: Translations = {
     body: 'Dnevni boravak otvoren prema terasi, zasebna spavaća soba i kuhinja u boji mora.',
   },
   pool: {
-    title: 'Bazen s pogledom na more.',
+    title: 'Bazen, okrenut pučini',
     body: 'Nekoliko koraka od apartmana je bazen kompleksa, okrenut prema pučini. Jutro počinje plivanjem, a popodne se provodi na ležaljci između maslina i šljunka.',
     points: ['Pogled na otvoreno more', 'Sezonski otvoreni bazen', 'Masline i sredozemno zelenilo', 'Nekoliko koraka od apartmana'],
   },
   gallery: {
-    title: 'Zavirite unutra.',
-    body: 'Dnevni boravak otvoren prema terasi, zasebna spavaća soba i kuhinja u boji mora. Dodirnite fotografiju za veći prikaz.',
+    title: 'Kroz stan, sobu po sobu',
+    body: 'Fotografije su snimljene u apartmanu, bez uljepšavanja. Dodirnite bilo koju za veći prikaz.',
     lightbox: {
       dialogLabel: 'Galerija fotografija',
       close: 'Zatvori',
@@ -106,7 +106,7 @@ export const me: Translations = {
   },
   reviews: {
     eyebrow: 'Utisci gostiju',
-    title: 'Boravak koji se pamti.',
+    title: 'Ovo su nam gosti napisali poslije boravka',
     scoreLabel: 'Izuzetno',
     countLabel: 'recenzija na Booking.com-u',
     verifiedLabel: 'Ocjena provjerena 7. septembra 2026.',
